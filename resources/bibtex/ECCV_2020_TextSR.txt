@@ -1,8 +1,0 @@
-@inproceedings{wang2020scene,
-  title={Scene text image super-resolution in the wild},
-  author={Wang, Wenjia and Xie, Enze and Liu, Xuebo and Wang, Wenhai and Liang, Ding and Shen, Chunhua and Bai, Xiang},
-  booktitle={European Conference on Computer Vision},
-  pages={650--666},
-  year={2020},
-  organization={Springer}
-}

@@ -1,7 +1,0 @@
-@inproceedings{wang2018mixed,
-  title={Mixed link networks},
-  author={Wang, Wenhai and Li, Xiang and Lu, Tong and Yang, Jian},
-  booktitle={Proceedings of the 27th International Joint Conference on Artificial Intelligence},
-  pages={2819--2825},
-  year={2018}
-}

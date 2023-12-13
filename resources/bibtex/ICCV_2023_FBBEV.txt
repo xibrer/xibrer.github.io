@@ -1,8 +1,0 @@
-@misc{li2023fbbev,
-      title={FB-BEV: BEV Representation from Forward-Backward View Transformations}, 
-      author={Zhiqi Li and Zhiding Yu and Wenhai Wang and Anima Anandkumar and Tong Lu and Jose M. Alvarez},
-      year={2023},
-      eprint={2308.02236},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
-}

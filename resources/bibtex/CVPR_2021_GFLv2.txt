@@ -1,7 +1,0 @@
-@inproceedings{li2021generalized,
-  title={Generalized focal loss v2: Learning reliable localization quality estimation for dense object detection},
-  author={Li, Xiang and Wang, Wenhai and Hu, Xiaolin and Li, Jun and Tang, Jinhui and Yang, Jian},
-  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
-  pages={11632--11641},
-  year={2021}
-}

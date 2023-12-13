@@ -1,6 +1,0 @@
-@article{li2023fb,
-  title={FB-OCC: 3D Occupancy Prediction based on Forward-Backward View Transformation},
-  author={Li, Zhiqi and Yu, Zhiding and Austin, David and Fang, Mingsheng and Lan, Shiyi and Kautz, Jan and Alvarez, Jose M},
-  journal={arXiv preprint arXiv:2307.01492},
-  year={2023}
-}

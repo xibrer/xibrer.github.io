@@ -1,7 +1,0 @@
-@inproceedings{xie2020polarmask,
-  title={Polarmask: Single shot instance segmentation with polar representation},
-  author={Xie, Enze and Sun, Peize and Song, Xiaoge and Wang, Wenhai and Liu, Xuebo and Liang, Ding and Shen, Chunhua and Luo, Ping},
-  booktitle={Proceedings of the IEEE/CVF conference on computer vision and pattern recognition},
-  pages={12193--12202},
-  year={2020}
-}
