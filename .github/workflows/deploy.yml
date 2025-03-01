@@ -24,20 +24,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Node
+      # 使用官方推荐方式设置 pnpm
+      - name: Setup Node.js with pnpm
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'pnpm'  # 修改缓存策略为 pnpm
+          cache: 'pnpm'  # 使用 pnpm 缓存
+          cache-dependency-path: pnpm-lock.yaml  # 指定锁定文件
 
+      # 安装 pnpm 的官方推荐方式
       - name: Install pnpm
-        run: npm install -g pnpm  # 新增 pnpm 安装步骤
+        run: corepack enable && corepack prepare pnpm@latest --activate
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile  # 改为 pnpm 安装命令
+        run: pnpm install --frozen-lockfile
 
       - name: Build
-        run: pnpm run build  # 改为 pnpm 构建命令
+        run: pnpm run build
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
