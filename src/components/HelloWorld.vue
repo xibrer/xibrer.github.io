@@ -124,14 +124,14 @@ defineProps({
 .personal-homepage {
   max-width: 900px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1.5rem;
   font-family: 'Noto Sans', 'Noto Sans SC', sans-serif;
   color: #333;
 }
 
 section {
-  margin-bottom: 3rem;
-  padding: 2rem;
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -145,7 +145,7 @@ h1 {
 
 h2 {
   font-size: 1.8rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   color: #2c3e50;
   border-bottom: 2px solid #eaecef;
   padding-bottom: 0.5rem;
@@ -153,7 +153,7 @@ h2 {
 
 h3 {
   font-size: 1.4rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
   color: #2c3e50;
 }
 
@@ -171,12 +171,12 @@ a:hover {
 .profile-container {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 .profile-image {
-  width: 180px;
-  height: 180px;
+  width: 160px;
+  height: 160px;
   border-radius: 50%;
   object-fit: cover;
   border: 4px solid #fff;
@@ -190,17 +190,14 @@ a:hover {
 .subtitle {
   font-size: 1.2rem;
   color: #7f8c8d;
-  margin-bottom: 1rem;
+  margin-bottom: 0.7rem;
 }
 
 .social-links {
   display: flex;
   gap: 1rem;
-  margin-top: 1rem;
-}
-
-.social-link {
-  padding: 0.5rem 1rem;
+  margin-top: 0.7rem;
+  padding: 0.4rem 0.8rem;
   background-color: #f8f9fa;
   border-radius: 4px;
   font-weight: 500;
@@ -229,7 +226,7 @@ a:hover {
 
 .timeline-item {
   position: relative;
-  margin-bottom: 2rem;
+  margin-bottom: 1.2rem;
 }
 
 .timeline-item::before {
@@ -246,28 +243,30 @@ a:hover {
 .timeline-date {
   font-weight: 500;
   color: #7f8c8d;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
 }
 
 .project-card {
-  padding: 1.5rem;
+   display: flex;
+  gap: 1.2rem;
+  padding: 1.2rem;
   background-color: #f8f9fa;
   border-radius: 8px;
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
 }
 
 .publication-card {
   display: flex;
-  gap: 1.5rem;
-  padding: 1.5rem;
+  gap: 1.2rem;
+  padding: 1.2rem;
   background-color: #f8f9fa;
   border-radius: 8px;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.2rem;
 }
 
 .publication-image {
-  width: 150px;
-  height: 100px;
+  width: 140px;
+  height: 90px;
   object-fit: cover;
   border-radius: 4px;
 }
@@ -277,24 +276,24 @@ a:hover {
 }
 
 .authors {
-  margin: 0.5rem 0;
+  margin: 0.3rem 0;
   color: #555;
 }
 
 .venue {
   font-style: italic;
   color: #7f8c8d;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
 }
 
 .publication-links {
   display: flex;
-  gap: 1rem;
-  margin: 0.5rem 0;
+  gap: 0.8rem;
+  margin: 0.3rem 0;
 }
 
 .publication-links a {
-  padding: 0.25rem 0.75rem;
+  padding: 0.2rem 0.6rem;
   background-color: #e9ecef;
   border-radius: 4px;
   font-size: 0.9rem;
@@ -302,8 +301,8 @@ a:hover {
 
 .publication-highlight {
   display: inline-block;
-  margin-top: 0.5rem;
-  padding: 0.25rem 0.75rem;
+  margin-top: 0.3rem;
+  padding: 0.2rem 0.6rem;
   background-color: #e3f2fd;
   border-left: 3px solid #2196f3;
   font-weight: 500;
@@ -311,10 +310,12 @@ a:hover {
 
 .awards-list {
   padding-left: 1.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .awards-list li {
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
 .view-all {
@@ -324,8 +325,16 @@ a:hover {
 
 #clustrmaps-container {
   width: 100%;
-  height: 250px;
-  margin-top: 1rem;
+  height: 220px;
+  margin-top: 0.7rem;
+}
+
+p {
+  margin: 0.5rem 0;
+}
+
+.publication-content p, .project-card p {
+  line-height: 1.4;
 }
 
 @media (max-width: 768px) {
@@ -340,7 +349,7 @@ a:hover {
   
   .publication-image {
     width: 100%;
-    height: 150px;
+    height: 140px;
   }
 }
 </style>
