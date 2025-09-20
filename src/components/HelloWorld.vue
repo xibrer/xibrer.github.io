@@ -84,9 +84,8 @@ defineProps({
           <p class="venue">Ubicomp, 2023</p>
           <div class="publication-links">
             <a href="./ecg.pdf" target="_blank">Paper</a>
-            <a href="https://github.com/xibrer" target="_blank">Code</a>
+            <span class="publication-highlight">Measuring ECG with smartphone's built-in IMU</span>
           </div>
-          <div class="publication-highlight">Measuring ECG with smartphone's built-in IMU</div>
         </div>
       </div>
       
@@ -98,8 +97,8 @@ defineProps({
           <p class="venue">Ubicomp, 2024</p>
           <div class="publication-links">
             <a href="./bp.pdf" target="_blank">Paper</a>
+            <span class="publication-highlight">Measuring Blood Pressure with single SCG</span>
           </div>
-          <div class="publication-highlight">Measuring Blood Pressure with single SCG</div>
         </div>
       </div>
     </section>
@@ -289,6 +288,7 @@ a:hover {
 
 .publication-links {
   display: flex;
+  align-items: center;
   gap: 0.8rem;
   margin: 0.3rem 0;
 }
@@ -302,11 +302,12 @@ a:hover {
 
 .publication-highlight {
   display: inline-block;
-  margin-top: 0.3rem;
   padding: 0.2rem 0.6rem;
   background-color: #e3f2fd;
   border-left: 3px solid #2196f3;
   font-weight: 500;
+  font-size: 0.85rem;
+  border-radius: 4px;
 }
 
 .awards-list {
@@ -331,9 +332,21 @@ a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  border: 1px solid #e9ecef;
+  background-color: transparent;
+  overflow: hidden;
+}
+
+#clustrmaps-container img {
+  max-width: 100%;
+  height: auto;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+#clustrmaps-container > div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 p {
@@ -378,6 +391,11 @@ p {
   #clustrmaps-container {
     min-height: 180px;
     margin-top: 0.5rem;
+  }
+  
+  #clustrmaps-container img {
+    max-width: 100%;
+    height: auto;
   }
   
   .social-links {
