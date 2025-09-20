@@ -28,7 +28,6 @@ defineProps({
       <h2>About Me</h2>
       <p>
         I am a graduate student at Beijing University of Technology. Currently, I am mainly working on developing AI methods for IoT. 
-        I have developed a smartphone-based blood pressure and electrocardiogram (ECG) solution.
       </p>
     </section>
 
