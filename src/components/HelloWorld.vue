@@ -83,7 +83,7 @@ defineProps({
           <p class="authors">Lei Wang, <strong>Xingwei Wang</strong>, Dalin Zhang, Xiaolei Ma, Yong Zhang, Haipeng Dai, Chenren Xu, Zhijun Li, Tao Gu</p>
           <p class="venue">Ubicomp, 2023</p>
           <div class="publication-links">
-            <a href="../assets/ecg.pdf" target="_blank">Paper</a>
+            <a href="./ecg.pdf" target="_blank">Paper</a>
             <a href="https://github.com/xibrer" target="_blank">Code</a>
           </div>
           <div class="publication-highlight">Measuring ECG with smartphone's built-in IMU</div>
@@ -97,7 +97,7 @@ defineProps({
           <p class="authors">Lei Wang, <strong>Xingwei Wang</strong>, Yu Zhang, Xiaolei Ma, Yong Zhang, Zhijun Li, Tao Gu</p>
           <p class="venue">Ubicomp, 2024</p>
           <div class="publication-links">
-            <a href="../assets/bp.pdf" target="_blank">Paper</a>
+            <a href="./bp.pdf" target="_blank">Paper</a>
           </div>
           <div class="publication-highlight">Measuring Blood Pressure with single SCG</div>
         </div>
