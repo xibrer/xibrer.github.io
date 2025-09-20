@@ -75,7 +75,7 @@ defineProps({
 
     <!-- 发表论文部分 -->
     <section class="publications-section">
-      <h2>Recent Publications <a href="./resources/html/publication.html" class="view-all">[Full List]</a></h2>
+      <h2>Recent Publications</h2>
       <div class="publication-card">
         <img src="../assets/ecg.png" alt="ECG Measurement" class="publication-image" />
         <div class="publication-content">
@@ -83,8 +83,8 @@ defineProps({
           <p class="authors">Lei Wang, <strong>Xingwei Wang</strong>, Dalin Zhang, Xiaolei Ma, Yong Zhang, Haipeng Dai, Chenren Xu, Zhijun Li, Tao Gu</p>
           <p class="venue">Ubicomp, 2023</p>
           <div class="publication-links">
-            <a href="https://dl.acm.org/doi/pdf/10.1145/3610871" target="_blank">Paper</a>
-            <a href="https://github.com/NVlabs/FB-BEV" target="_blank">Code</a>
+            <a href="../assets/ecg.pdf" target="_blank">Paper</a>
+            <a href="https://github.com/xibrer" target="_blank">Code</a>
           </div>
           <div class="publication-highlight">Measuring ECG with smartphone's built-in IMU</div>
         </div>
@@ -97,7 +97,7 @@ defineProps({
           <p class="authors">Lei Wang, <strong>Xingwei Wang</strong>, Yu Zhang, Xiaolei Ma, Yong Zhang, Zhijun Li, Tao Gu</p>
           <p class="venue">Ubicomp, 2024</p>
           <div class="publication-links">
-            <a href="./resources/bp.pdf" target="_blank">Paper</a>
+            <a href="../assets/bp.pdf" target="_blank">Paper</a>
           </div>
           <div class="publication-highlight">Measuring Blood Pressure with single SCG</div>
         </div>
@@ -115,6 +115,7 @@ defineProps({
 
     <!-- 访问统计 -->
     <section class="visitor-stats">
+      <h2>Visitor Statistics</h2>
       <div id="clustrmaps-container"></div>
     </section>
   </div>
@@ -247,7 +248,7 @@ a:hover {
 }
 
 .project-card {
-   display: flex;
+  display: flex;
   gap: 1.2rem;
   padding: 1.2rem;
   background-color: #f8f9fa;
@@ -325,8 +326,14 @@ a:hover {
 
 #clustrmaps-container {
   width: 100%;
-  height: 220px;
+  min-height: 220px;
   margin-top: 0.7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
 }
 
 p {
@@ -350,6 +357,41 @@ p {
   .publication-image {
     width: 100%;
     height: 140px;
+  }
+  
+  .personal-homepage {
+    padding: 1rem;
+  }
+  
+  section {
+    padding: 1rem;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  #clustrmaps-container {
+    min-height: 180px;
+    margin-top: 0.5rem;
+  }
+  
+  .social-links {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  
+  .timeline {
+    padding-left: 1.5rem;
+  }
+  
+  .timeline-item::before {
+    left: -2rem;
   }
 }
 </style>
