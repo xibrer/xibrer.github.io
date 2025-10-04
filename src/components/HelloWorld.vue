@@ -209,11 +209,15 @@ a:hover {
   display: flex;
   gap: 1rem;
   margin-top: 0.7rem;
+}
+
+.social-link {
   padding: 0.4rem 0.8rem;
   background-color: #f8f9fa;
   border-radius: 4px;
   font-weight: 500;
   transition: background-color 0.3s;
+  text-decoration: none;
 }
 
 .social-link:hover {
