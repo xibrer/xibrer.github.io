@@ -7,9 +7,20 @@ import HelloWorld from './components/HelloWorld.vue'
 </template>
 
 <style>
-body {
+* {
+  box-sizing: border-box;
+}
+
+html, body {
   margin: 0;
   padding: 0;
   background-color: #f5f5f5;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+#app {
+  width: 100%;
+  overflow-x: hidden;
 }
 </style>

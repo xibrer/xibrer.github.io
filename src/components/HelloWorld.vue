@@ -152,6 +152,9 @@ defineProps({
   padding: 1.5rem;
   font-family: 'Noto Sans', 'Noto Sans SC', sans-serif;
   color: #333;
+  box-sizing: border-box;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 section {
@@ -162,6 +165,9 @@ section {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 4px 16px rgba(0, 0, 0, 0.04);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: 1px solid rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
 }
 
 section:hover {
@@ -382,6 +388,9 @@ a:hover {
   margin-bottom: 1.2rem;
   border: 1px solid rgba(102, 126, 234, 0.1);
   transition: all 0.3s ease;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
 }
 
 .project-card:hover {
@@ -400,6 +409,9 @@ a:hover {
   border: 1px solid rgba(102, 126, 234, 0.1);
   transition: all 0.3s ease;
   cursor: pointer;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
 }
 
 .publication-card:hover {
@@ -415,6 +427,8 @@ a:hover {
   border-radius: 8px;
   transition: transform 0.3s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+  max-width: 100%;
 }
 
 .publication-card:hover .publication-image {
@@ -550,12 +564,16 @@ p {
   }
   
   .personal-homepage {
-    padding: 1rem;
+    padding: 0.75rem;
+    width: 100%;
+    box-sizing: border-box;
   }
   
   section {
-    padding: 1.5rem;
+    padding: 1rem;
     margin-bottom: 1.5rem;
+    width: 100%;
+    box-sizing: border-box;
   }
   
   section:hover {
@@ -602,7 +620,37 @@ p {
   
   .project-card,
   .publication-card {
-    padding: 1.2rem;
+    padding: 1rem;
+    gap: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .publication-image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 140px;
+  }
+  
+  .profile-container {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .timeline-item {
+    padding-left: 0.5rem;
+  }
+  
+  .publication-content {
+    min-width: 0;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+  
+  h3 {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 }
 </style>
