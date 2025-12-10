@@ -104,12 +104,25 @@ defineProps({
       <div class="publication-card">
         <img src="../assets/acccall.png" alt="AccCall System" class="publication-image" />
         <div class="publication-content">
-          <h3>AccCall: Enhancing Real-Time Phone Call Quality with Smartphone’s Built-in Accelerometer</h3>
+          <h3>AccCall: Enhancing Real-Time Phone Call Quality with Smartphone's Built-in Accelerometer</h3>
           <p class="authors">Lei Wang,<strong>Xingwei Wang</strong>, Yu Zhang, Xiaolei Ma, Yong Zhang, Zhijun Li, Tao Gu</p>
           <p class="venue">Ubicomp, 2025</p>
           <div class="publication-links">
             <a href="./AccCall.pdf" target="_blank">Paper</a>
-            <span class="publication-highlight">Using smartphone’s built-in accelerometer to enhance audio</span>
+            <span class="publication-highlight">Using smartphone's built-in accelerometer to enhance audio</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="publication-card">
+        <img src="../assets/acccall.png" alt="LargeCall System" class="publication-image" />
+        <div class="publication-content">
+          <h3>LargeCall: Dual-Modality Speech Enhancement for Noise-Robust Phone Calls Using Smartphone's Built-in Accelerometer</h3>
+          <p class="authors">Lei Wang, <strong>Xingwei Wang</strong>, Yu Zhang, Xiaolei Ma, Yong Zhang, Zhijun Li, Tao Gu</p>
+          <p class="venue">INFOCOM, 2026</p>
+          <div class="publication-links">
+            <a href="./LargeCall.pdf" target="_blank">Paper</a>
+            <span class="publication-highlight">Dual-modality speech enhancement with audio and accelerometer</span>
           </div>
         </div>
       </div>
