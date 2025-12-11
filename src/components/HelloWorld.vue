@@ -27,8 +27,17 @@ defineProps({
     <section class="about-section">
       <h2>About Me</h2>
       <p>
-        I am a graduate student at Beijing University of Technology. Currently, I am mainly working on developing AI methods for IoT. 
+        I am a Master's student in Mathematics at Beijing University of Technology, maintaining a GPA of 3.89/4.0 and expecting to graduate in June 2026. My research focuses on smartphone-based healthcare sensing and AI-augmented audio perception using built-in sensors.
       </p>
+      <p>
+        During my Master's program, I have published three student first-author and co-first-author papers in ACM IMWUT (UbiComp) and INFOCOM on smartphone-based healthcare sensing and audio enhancement. My current research includes:
+      </p>
+      <ul class="research-list">
+        <li>Enhancing phone call quality in noisy environments using large audio model-based speech priors (INFOCOM 2026)</li>
+        <li>Leveraging smartphone accelerometers to capture facial vibrations for speech enhancement during noisy phone calls (UbiComp 2025)</li>
+        <li>Developing a smartphone-based blood pressure monitoring system using chest SCG signals captured by the built-in accelerometer (UbiComp 2024)</li>
+        <li>Reconstructing ECG signals from smartphone accelerometer data (UbiComp 2023)</li>
+      </ul>
     </section>
 
     <!-- 经历部分 -->
@@ -486,6 +495,28 @@ a:hover {
   font-size: 0.85rem;
   border-radius: 6px;
   color: #555;
+}
+
+.research-list {
+  padding-left: 1.5rem;
+  margin-top: 0.8rem;
+  margin-bottom: 0.5rem;
+  list-style: none;
+}
+
+.research-list li {
+  margin-bottom: 0.8rem;
+  padding-left: 1.8rem;
+  position: relative;
+  line-height: 1.7;
+  color: #555;
+}
+
+.research-list li::before {
+  content: '🔬';
+  position: absolute;
+  left: 0;
+  font-size: 1.1rem;
 }
 
 .awards-list {
