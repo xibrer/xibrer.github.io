@@ -30,40 +30,34 @@ defineProps({
         I am a Master's student in Mathematics at Beijing University of Technology, maintaining a GPA of 3.89/4.0 and expecting to graduate in June 2026. My research focuses on smartphone-based healthcare sensing and AI-augmented audio perception using built-in sensors.
       </p>
       <p>
-        During my Master's program, I have published three student first-author and co-first-author papers in ACM IMWUT (UbiComp) and INFOCOM on smartphone-based healthcare sensing and audio enhancement. My current research includes:
+        During my Master's program, I have published three student first-author and one co-first-author papers in ACM IMWUT (UbiComp) and INFOCOM on smartphone-based healthcare sensing and audio enhancement. My current research includes:
       </p>
       <ul class="research-list">
-        <li>Enhancing phone call quality in noisy environments using large audio model-based speech priors (INFOCOM 2026)</li>
-        <li>Leveraging smartphone accelerometers to capture facial vibrations for speech enhancement during noisy phone calls (UbiComp 2025)</li>
-        <li>Developing a smartphone-based blood pressure monitoring system using chest SCG signals captured by the built-in accelerometer (UbiComp 2024)</li>
-        <li>Reconstructing ECG signals from smartphone accelerometer data (UbiComp 2023)</li>
+        <li>Enhancing phone call quality in noisy environments using large audio model-based speech priors (INFOCOM 2026 <span class="ccf-a">[CCF-A]</span>)</li>
+        <li>Leveraging smartphone accelerometers to capture facial vibrations for speech enhancement during noisy phone calls (UbiComp 2025 <span class="ccf-a">[CCF-A]</span>)</li>
+        <li>Developing a smartphone-based blood pressure monitoring system using chest SCG signals captured by the built-in accelerometer (UbiComp 2024 <span class="ccf-a">[CCF-A]</span>)</li>
+        <li>Reconstructing ECG signals from smartphone accelerometer data (UbiComp 2023 <span class="ccf-a">[CCF-A]</span>)</li>
       </ul>
     </section>
 
     <!-- 经历部分 -->
     <section class="experience-section">
       <h2>Experience</h2>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-date">2023/09 - Present</div>
-          <div class="timeline-content">
-            <h3>Graduate Student</h3>
-            <p>Beijing University of Technology</p>
-          </div>
+      <div class="experience-grid">
+        <div class="experience-item">
+          <div class="experience-date">2023/09 - Present</div>
+          <h3>Graduate Student</h3>
+          <p>Beijing University of Technology</p>
         </div>
-        <div class="timeline-item">
-          <div class="timeline-date">2023/06 - 2023/09</div>
-          <div class="timeline-content">
-            <h3>Research Intern</h3>
-            <p>Soochow University, led by <a href="https://web.suda.edu.cn/wanglei/">Prof. Lei Wang</a></p>
-          </div>
+        <div class="experience-item">
+          <div class="experience-date">2023/06 - 2023/09</div>
+          <h3>Research Intern</h3>
+          <p>Soochow University, led by <a href="https://web.suda.edu.cn/wanglei/">Prof. Lei Wang</a></p>
         </div>
-        <div class="timeline-item">
-          <div class="timeline-date">2021/09 - 2023/06</div>
-          <div class="timeline-content">
-            <h3>Joint Training</h3>
-            <p>Shenzhen Institute of Advanced Technology, led by <a href="http://hpcc.siat.ac.cn/homepage/zhangy.html">Prof. Yong Zhang</a></p>
-          </div>
+        <div class="experience-item">
+          <div class="experience-date">2021/09 - 2023/06</div>
+          <h3>Joint Training</h3>
+          <p>Shenzhen Institute of Advanced Technology, led by <a href="http://hpcc.siat.ac.cn/homepage/zhangy.html">Prof. Yong Zhang</a></p>
         </div>
       </div>
     </section>
@@ -72,12 +66,28 @@ defineProps({
     <section class="projects-section">
       <h2>Projects</h2>
       <div class="project-card">
-        <h3>TorchSense</h3>
-        <p>
-          Torchsense is a library for sensor data processing with PyTorch.
-          It provides I/O, signal and data processing functions,
-          datasets, model implementations and application components.
-        </p>
+        <div class="project-content">
+          <h3>TorchSense</h3>
+          <p>
+            A PyTorch library for sensor data processing, providing I/O, signal processing, datasets, 
+            and model implementations for smartphone-based sensing applications.
+          </p>
+          <div class="project-links">
+            <a href="https://github.com/xibrer/torchsense" target="_blank">GitHub Repository</a>
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-content">
+          <h3>SenseHub</h3>
+          <p>
+            A unified platform for smartphone-based sensing applications, integrating accelerometer-based 
+            health monitoring, audio enhancement, and multimodal sensor fusion.
+          </p>
+          <div class="project-links">
+            <a href="https://github.com/xibrer/sensehub" target="_blank">GitHub Repository</a>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -349,52 +359,43 @@ a:hover {
   text-decoration: none;
 }
 
-.timeline {
-  position: relative;
-  padding-left: 2rem;
+.experience-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.2rem;
+  width: 100%;
 }
 
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
-  border-radius: 2px;
+.experience-item {
+  padding: 1.2rem;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  border-radius: 8px;
+  border-left: 4px solid #667eea;
+  transition: all 0.3s ease;
+  text-align: left;
 }
 
-.timeline-item {
-  position: relative;
-  margin-bottom: 1.5rem;
-  padding-left: 1rem;
-  transition: transform 0.3s ease;
+.experience-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
 }
 
-.timeline-item:hover {
-  transform: translateX(5px);
-}
-
-.timeline-item::before {
-  content: '';
-  position: absolute;
-  left: -2.75rem;
-  top: 0.5rem;
-  width: 1.2rem;
-  height: 1.2rem;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border: 3px solid white;
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
-  z-index: 1;
-}
-
-.timeline-date {
+.experience-date {
   font-weight: 600;
   color: #667eea;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.experience-item h3 {
   margin-bottom: 0.3rem;
+  font-size: 1.1rem;
+}
+
+.experience-item p {
+  margin: 0.3rem 0;
   font-size: 0.95rem;
+  line-height: 1.5;
 }
 
 .project-card {
@@ -415,6 +416,45 @@ a:hover {
   transform: translateY(-3px);
   box-shadow: 0 6px 20px rgba(102, 126, 234, 0.15);
   border-color: rgba(102, 126, 234, 0.3);
+}
+
+.project-content {
+  flex: 1;
+  width: 100%;
+  text-align: left;
+}
+
+.projects-section {
+  text-align: left;
+}
+
+.projects-section p {
+  text-align: left;
+}
+
+.project-links {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.project-links a {
+  padding: 0.3rem 0.8rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(102, 126, 234, 0.3);
+}
+
+.project-links a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  text-decoration: none;
 }
 
 .publication-card {
@@ -526,6 +566,11 @@ a:hover {
   position: absolute;
   left: 0;
   font-size: 1.1rem;
+}
+
+.ccf-a {
+  color: #e74c3c;
+  font-weight: 700;
 }
 
 .awards-list {
@@ -654,12 +699,13 @@ p {
     flex-wrap: wrap;
   }
   
-  .timeline {
-    padding-left: 1.5rem;
+  .experience-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
   
-  .timeline-item::before {
-    left: -2rem;
+  .experience-item {
+    padding: 1rem;
   }
   
   .profile-image {
@@ -685,10 +731,6 @@ p {
   .profile-container {
     width: 100%;
     box-sizing: border-box;
-  }
-  
-  .timeline-item {
-    padding-left: 0.5rem;
   }
   
   .publication-content {
