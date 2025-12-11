@@ -184,6 +184,15 @@ section:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12), 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
+.about-section {
+  text-align: left;
+}
+
+.about-section p,
+.about-section ul {
+  text-align: left;
+}
+
 .profile-section {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
@@ -609,6 +618,15 @@ p {
   
   section:hover {
     transform: none;
+  }
+  
+  .about-section {
+    text-align: left;
+  }
+  
+  .about-section p,
+  .about-section ul {
+    text-align: left;
   }
   
   h1 {
