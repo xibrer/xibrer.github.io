@@ -29,6 +29,17 @@ type PageData =
   | { type: 'text'; id: string; config: TextPageConfig; content: string }
   | { type: 'card'; id: string; config: CardPageConfig };
 
+function mergePdfs(pubs: Publication[], locale?: string) {
+  const pubConfig = getPageConfig('publications', locale) as PublicationPageConfig | null;
+  if (pubConfig?.pdfs) {
+    for (const pub of pubs) {
+      if (!pub.pdfUrl && pubConfig.pdfs[pub.id]) {
+        pub.pdfUrl = pubConfig.pdfs[pub.id];
+      }
+    }
+  }
+}
+
 function processSections(sections: SectionConfig[], locale?: string): SectionConfig[] {
   return sections.map((section: SectionConfig) => {
     switch (section.type) {
@@ -40,6 +51,7 @@ function processSections(sections: SectionConfig[], locale?: string): SectionCon
       case 'publications': {
         const bibtex = getBibtexContent('publications.bib', locale);
         const allPubs = parseBibTeX(bibtex, locale);
+        mergePdfs(allPubs, locale);
         const filteredPubs = section.filter === 'selected'
           ? allPubs.filter((p) => p.selected)
           : allPubs;
@@ -90,11 +102,13 @@ function loadPageDataForLocale(locale: string | undefined): HomePageLocaleData {
         if (pageConfig.type === 'publication') {
           const pubConfig = pageConfig as PublicationPageConfig;
           const bibtex = getBibtexContent(pubConfig.source, locale);
+          const pubs = parseBibTeX(bibtex, locale);
+          mergePdfs(pubs, locale);
           return {
             type: 'publication',
             id: item.target,
             config: pubConfig,
-            publications: parseBibTeX(bibtex, locale),
+            publications: pubs,
           } as PageData;
         }
 

@@ -23,10 +23,18 @@ function loadDynamicPageData(slug: string, locale?: string): DynamicPageLocaleDa
   if (pageConfig.type === 'publication') {
     const pubConfig = pageConfig as PublicationPageConfig;
     const bibtex = getBibtexContent(pubConfig.source, locale);
+    const pubs = parseBibTeX(bibtex, locale);
+    if (pubConfig.pdfs) {
+      for (const pub of pubs) {
+        if (!pub.pdfUrl && pubConfig.pdfs[pub.id]) {
+          pub.pdfUrl = pubConfig.pdfs[pub.id];
+        }
+      }
+    }
     return {
       type: 'publication',
       config: pubConfig,
-      publications: parseBibTeX(bibtex, locale),
+      publications: pubs,
     };
   }
 

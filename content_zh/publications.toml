@@ -2,3 +2,9 @@ type = "publication"
 title = "论文"
 description = "我的研究成果列表。"
 source = "publications.bib"
+
+[pdfs]
+wang2026largecall = "/LargeCall.pdf"
+wang2025acccall = "/AccCall.pdf"
+wang2024bp = "/bp.pdf"
+wang2023ecg = "/ecg.pdf"

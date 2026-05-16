@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Publication } from '@/types/publication';
 import { useMessages } from '@/lib/i18n/useMessages';
 import FormattedBibTeXText from '@/components/publications/FormattedBibTeXText';
+import { DocumentArrowDownIcon } from '@heroicons/react/24/outline';
 
 interface SelectedPublicationsProps {
     publications: Publication[];
@@ -51,7 +52,7 @@ export default function SelectedPublications({ publications, title, enableOnePag
                                         {author.name}
                                     </span>
                                     {author.isCorresponding && (
-                                        <sup className={`ml-0 ${author.isHighlighted ? 'text-accent' : 'text-neutral-600 dark:text-neutral-500'}`}>†</sup>
+                                        <sup className={`ml-0 ${author.isHighlighted ? 'text-accent' : 'text-neutral-600 dark:text-neutral-500'}`}>+</sup>
                                     )}
                                     {idx < pub.authors.length - 1 && ', '}
                                 </span>
@@ -64,6 +65,17 @@ export default function SelectedPublications({ publications, title, enableOnePag
                             <p className="text-sm text-neutral-500 dark:text-neutral-500 line-clamp-2">
                                 {pub.description}
                             </p>
+                        )}
+                        {pub.pdfUrl && (
+                            <a
+                                href={pub.pdfUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center px-2.5 py-1 mt-2 rounded-md text-xs font-medium bg-white dark:bg-neutral-700 text-neutral-600 dark:text-neutral-300 hover:bg-accent hover:text-white transition-colors border border-neutral-200 dark:border-neutral-600"
+                            >
+                                <DocumentArrowDownIcon className="h-3 w-3 mr-1" />
+                                PDF
+                            </a>
                         )}
                     </motion.div>
                 ))}

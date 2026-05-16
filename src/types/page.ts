@@ -7,6 +7,7 @@ export interface BasePageConfig {
 export interface PublicationPageConfig extends BasePageConfig {
     type: 'publication';
     source: string;
+    pdfs?: Record<string, string>;
 }
 
 export interface TextPageConfig extends BasePageConfig {
