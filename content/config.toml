@@ -1,0 +1,63 @@
+[site]
+title = "Xingwei Wang (王兴伟)"
+description = "Personal academic homepage of Xingwei Wang, Master's student at Beijing University of Technology — smartphone sensing, AI healthcare, and audio perception."
+favicon = "/favicon.svg"
+last_updated = "May 16, 2026"
+
+[author]
+name = "Xingwei Wang"
+title = "Master's Student"
+institution = "Beijing University of Technology"
+avatar = "/bio.jpg"
+
+[social]
+email = "xw.wang@emails.bjut.edu.cn"
+location = "Beijing, China"
+location_url = "https://maps.google.com"
+location_details = [
+  "Math Department,",
+  "Beijing University of Technology"
+]
+google_scholar = "https://scholar.google.com/citations?user=NF-6qWUAAAAJ&hl=zh-CN"
+github = "https://github.com/xibrer"
+
+[features]
+enable_likes = false
+enable_one_page_mode = false
+
+[i18n]
+enabled = true
+locales = ["zh", "en"]
+default_locale = "en"
+mode = "auto"
+fixed_locale = "en"
+persist = true
+switcher = true
+
+[i18n.labels]
+zh = "中文"
+en = "English"
+
+[[navigation]]
+title = "About"
+type = "page"
+target = "about"
+href = "/"
+
+[[navigation]]
+title = "Publications"
+type = "page"
+target = "publications"
+href = "/publications"
+
+[[navigation]]
+title = "Awards"
+type = "page"
+target = "awards"
+href = "/awards"
+
+[[navigation]]
+title = "CV"
+type = "page"
+target = "cv"
+href = "/cv"

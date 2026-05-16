@@ -1,0 +1,29 @@
+type = "about"
+title = "关于我"
+
+[profile]
+research_interests = [
+  "基于智能手机的健康感知",
+  "AI增强音频感知",
+  "基于加速度计的健康监测",
+  "多模态传感器融合"
+]
+
+[[sections]]
+id = "about"
+type = "markdown"
+source = "bio.md"
+title = "关于"
+
+[[sections]]
+id = "featured_publications"
+type = "publications"
+title = "代表性论文"
+filter = "selected"
+limit = 5
+
+[[sections]]
+id = "news"
+type = "list"
+title = "新闻"
+source = "news.toml"

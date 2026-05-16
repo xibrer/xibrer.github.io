@@ -1,0 +1,15 @@
+type = "card"
+title = "Awards"
+description = "Honors and awards I have received."
+
+[[items]]
+title = "Graduate"
+subtitle = "Beijing University of Technology"
+date = "2023-12"
+content = "Graduate award for outstanding academic performance."
+
+[[items]]
+title = "Highest-Ranking Graduation Project"
+subtitle = "Entire School"
+date = "2023-06"
+content = "The highest-ranking graduation project across the entire school."

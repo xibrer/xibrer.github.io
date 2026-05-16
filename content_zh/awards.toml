@@ -1,0 +1,15 @@
+type = "card"
+title = "荣誉与奖项"
+description = "我所获得的荣誉与奖项。"
+
+[[items]]
+title = "研究生学业奖学金"
+subtitle = "北京工业大学"
+date = "2023-12"
+content = "研究生阶段学术表现优异获奖。"
+
+[[items]]
+title = "全学院最高排名毕业设计"
+subtitle = "全院"
+date = "2023-06"
+content = "毕业设计在全学院中获得最高排名。"
