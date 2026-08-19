@@ -45,6 +45,15 @@ export default function Navigation({
     height: number;
   } | null>(null);
   const resolvedLocale = i18n.enabled ? locale : i18n.defaultLocale;
+  const pathSegments = pathname.split('/').filter(Boolean);
+  const pathLocale = pathSegments[0] && i18n.locales.includes(pathSegments[0]) ? pathSegments[0] : null;
+  const routeLocale = pathLocale || resolvedLocale;
+  const pathnameWithoutLocale = pathLocale ? `/${pathSegments.slice(1).join('/')}` || '/' : pathname;
+
+  const localizeHref = useCallback((href: string) => {
+    if (!i18n.enabled) return href;
+    return href === '/' ? `/${routeLocale}` : `/${routeLocale}${href}`;
+  }, [i18n.enabled, routeLocale]);
 
   const effectiveItems = useMemo(() => {
     return itemsByLocale?.[resolvedLocale] || itemsByLocale?.[i18n.defaultLocale] || items;
@@ -117,11 +126,11 @@ export default function Navigation({
     enableOnePageMode
       ? activeHash === `#${item.target}` || (!activeHash && item.target === 'about')
       : (item.href === '/'
-        ? pathname === '/'
-        : pathname.startsWith(item.href));
+        ? pathnameWithoutLocale === '/'
+        : pathnameWithoutLocale.startsWith(item.href));
 
   const getDesktopItemHref = (item: SiteConfig['navigation'][number]) =>
-    enableOnePageMode ? `/#${item.target}` : item.href;
+    enableOnePageMode ? `${localizeHref('/')}#${item.target}` : localizeHref(item.href);
 
   const activeItem = effectiveItems.find((item) => isDesktopItemActive(item)) ?? null;
   const activeHref = activeItem ? getDesktopItemHref(activeItem) : null;
@@ -180,7 +189,7 @@ export default function Navigation({
                   className="flex-shrink-0"
                 >
                   <Link
-                    href="/"
+                    href={localizeHref('/')}
                     className="text-xl lg:text-2xl font-serif font-semibold text-primary hover:text-accent transition-colors duration-200"
                   >
                     {effectiveSiteTitle}
@@ -281,14 +290,14 @@ export default function Navigation({
                   <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                     {effectiveItems.map((item, index) => {
                       const isActive = enableOnePageMode
-                        ? (item.href === '/' ? pathname === '/' && !activeHash : activeHash === `#${item.target}`)
+                        ? (item.href === '/' ? pathnameWithoutLocale === '/' && !activeHash : activeHash === `#${item.target}`)
                         : (item.href === '/'
-                          ? pathname === '/'
-                          : pathname.startsWith(item.href));
+                          ? pathnameWithoutLocale === '/'
+                          : pathnameWithoutLocale.startsWith(item.href));
 
                       const href = enableOnePageMode
-                        ? (item.href === '/' ? '/' : `/#${item.target}`)
-                        : item.href;
+                        ? (item.href === '/' ? localizeHref('/') : `${localizeHref('/')}#${item.target}`)
+                        : localizeHref(item.href);
 
                       return (
                         <motion.div

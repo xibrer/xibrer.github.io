@@ -1,5 +1,6 @@
 [site]
 title = "Xingwei Wang (王兴伟)"
+url = "https://xibrer.github.io"
 description = "Personal academic homepage of Xingwei Wang, PhD student at Beihang University — AIoT, smartphone sensing, healthcare, and audio perception."
 favicon = "/favicon.svg"
 last_updated = "August 19, 2026"
@@ -8,7 +9,7 @@ last_updated = "August 19, 2026"
 name = "Xingwei Wang"
 title = "PhD Student"
 institution = "Beihang University"
-avatar = "/bio.jpg"
+avatar = "/bio.webp"
 
 [social]
 email = "wangxingwei@buaa.edu.cn"

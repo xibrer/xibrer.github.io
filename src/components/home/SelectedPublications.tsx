@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Publication } from '@/types/publication';
 import { useMessages } from '@/lib/i18n/useMessages';
 import FormattedBibTeXText from '@/components/publications/FormattedBibTeXText';
@@ -16,6 +17,8 @@ interface SelectedPublicationsProps {
 
 export default function SelectedPublications({ publications, title, enableOnePageMode = false }: SelectedPublicationsProps) {
     const messages = useMessages();
+    const pathname = usePathname();
+    const localePrefix = pathname.startsWith('/zh') ? '/zh' : '/en';
     const resolvedTitle = title || messages.home.selectedPublications;
 
     return (
@@ -27,7 +30,7 @@ export default function SelectedPublications({ publications, title, enableOnePag
             <div className="flex items-center justify-between mb-4">
                 <h2 className="text-2xl font-serif font-bold text-primary">{resolvedTitle}</h2>
                 <Link
-                    href={enableOnePageMode ? "/#publications" : "/publications"}
+                    href={enableOnePageMode ? `${localePrefix}/#publications` : `${localePrefix}/publications`}
                     prefetch={true}
                     className="text-accent hover:text-accent-dark text-sm font-medium transition-all duration-200 rounded hover:bg-accent/10 hover:shadow-sm"
                 >
@@ -44,7 +47,9 @@ export default function SelectedPublications({ publications, title, enableOnePag
                         className="bg-neutral-50 dark:bg-neutral-800 p-4 rounded-lg shadow-sm border border-neutral-200 dark:border-[rgba(148,163,184,0.24)] hover:shadow-lg transition-all duration-200 hover:scale-[1.02]"
                     >
                         <h3 className="font-semibold text-primary mb-2 leading-tight">
-                            <FormattedBibTeXText nodes={pub.titleNodes} fallback={pub.title} />
+                            <Link href={`${localePrefix}/publications/${pub.id}`} className="hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 rounded-sm">
+                                <FormattedBibTeXText nodes={pub.titleNodes} fallback={pub.title} />
+                            </Link>
                         </h3>
                         <p className="text-sm text-neutral-600 dark:text-neutral-500 mb-1">
                             {pub.authors.map((author, idx) => (

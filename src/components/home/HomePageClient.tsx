@@ -43,10 +43,12 @@ export interface HomePageLocaleData {
 interface HomePageClientProps {
   dataByLocale: Record<string, HomePageLocaleData>;
   defaultLocale: string;
+  initialLocale?: string;
 }
 
-export default function HomePageClient({ dataByLocale, defaultLocale }: HomePageClientProps) {
-  const locale = useLocaleStore((state) => state.locale);
+export default function HomePageClient({ dataByLocale, defaultLocale, initialLocale }: HomePageClientProps) {
+  const storedLocale = useLocaleStore((state) => state.locale);
+  const locale = initialLocale || storedLocale;
   const fallback = dataByLocale[defaultLocale] || Object.values(dataByLocale)[0];
   const data = dataByLocale[locale] || fallback;
 

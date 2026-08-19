@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
 import { CardPageConfig } from '@/types/page';
+import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
+import { useMessages } from '@/lib/i18n/useMessages';
 
 const markdownComponents = {
     p: ({ children }: React.ComponentProps<'p'>) => <p className="mb-3 last:mb-0">{children}</p>,
@@ -30,6 +32,8 @@ const markdownComponents = {
 };
 
 export default function CardPage({ config, embedded = false }: { config: CardPageConfig; embedded?: boolean }) {
+    const messages = useMessages();
+
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -82,6 +86,17 @@ export default function CardPage({ config, embedded = false }: { config: CardPag
                                     </span>
                                 ))}
                             </div>
+                        )}
+                        {item.link && (
+                            <a
+                                href={item.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="mt-4 inline-flex items-center gap-1.5 rounded-md bg-accent px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-accent-dark focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
+                            >
+                                {messages.common.viewProject}
+                                <ArrowTopRightOnSquareIcon className="h-4 w-4" aria-hidden="true" />
+                            </a>
                         )}
                     </motion.div>
                 ))}

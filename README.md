@@ -2,7 +2,7 @@
 
 Personal academic homepage of **Xingwei Wang**, PhD student at Beihang University. Research focuses on AIoT, smartphone-based healthcare sensing, and AI-augmented audio perception.
 
-Built with [PRISM](https://github.com/xyjoey/PRISM) (Next.js + Tailwind CSS + TypeScript).
+Adapted from [PRISM](https://github.com/xyjoey/PRISM) and built with Next.js, Tailwind CSS, and TypeScript.
 
 🌐 [xibrer.github.io](https://xibrer.github.io)
 
@@ -16,7 +16,7 @@ Built with [PRISM](https://github.com/xyjoey/PRISM) (Next.js + Tailwind CSS + Ty
 ### Setup
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
@@ -52,6 +52,16 @@ npm run build
 ```
 
 Static `out/` directory is generated. GitHub Actions auto-deploys on push to `main`.
+
+Before pushing a content or code change, run:
+
+```bash
+npm run validate
+npm run lint
+npm run typecheck
+npm test
+npm run build
+```
 
 See [docs/deployment.md](docs/deployment.md) for details.
 

@@ -4,7 +4,36 @@ import { getRuntimeI18nConfig } from './i18n/config';
 import { parseBibTeXInline } from './bibtexInline';
 
 // eslint-disable-next-line @typescript-eslint/no-require-imports
-const bibtexParse = require('bibtex-parse-js');
+const bibtexParse = require('bibtex-parse');
+
+interface RawBibTeXEntry {
+  key: string;
+  type: string;
+  [field: string]: unknown;
+}
+
+interface NormalizedBibTeXEntry {
+  entryType: string;
+  citationKey: string;
+  entryTags: Record<string, string>;
+}
+
+function normalizeBibTeXEntry(entry: RawBibTeXEntry): NormalizedBibTeXEntry {
+  const tags: Record<string, string> = {};
+
+  for (const [field, value] of Object.entries(entry)) {
+    if (field === 'key' || field === 'type' || value === undefined || value === null) {
+      continue;
+    }
+    tags[field.toLowerCase()] = String(value);
+  }
+
+  return {
+    entryType: entry.type,
+    citationKey: entry.key,
+    entryTags: tags,
+  };
+}
 
 // Map BibTeX entry types to our publication types
 const typeMapping: Record<string, PublicationType> = {
@@ -38,7 +67,7 @@ const monthMapping: Record<string, number> = {
 
 export function parseBibTeX(bibtexContent: string, locale?: string): Publication[] {
   const highlightNames = getHighlightNames(locale);
-  const entries = bibtexParse.toJSON(bibtexContent);
+  const entries = (bibtexParse.entries(bibtexContent) as RawBibTeXEntry[]).map(normalizeBibTeXEntry);
 
   return entries.map((entry: { entryType: string; citationKey: string; entryTags: Record<string, string> }, index: number) => {
     const tags = entry.entryTags;

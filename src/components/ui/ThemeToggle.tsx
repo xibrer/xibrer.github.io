@@ -77,6 +77,7 @@ export function ThemeToggle() {
           'text-neutral-600 hover:text-primary dark:text-neutral-400 dark:hover:text-white'
         )}
         title={`${messages.theme.currentTheme}: ${currentTheme.label}. ${messages.theme.cycleTheme}.`}
+        aria-label={`${messages.theme.currentTheme}: ${currentTheme.label}. ${messages.theme.cycleTheme}.`}
       >
         <motion.div
           key={theme}
@@ -134,6 +135,9 @@ export function ThemeToggleDropdown() {
           'text-neutral-600 hover:text-primary dark:text-neutral-400 dark:hover:text-white'
         )}
         title={`${messages.theme.currentTheme}: ${currentTheme.label}`}
+        aria-label={`${messages.theme.currentTheme}: ${currentTheme.label}`}
+        aria-expanded={isOpen}
+        aria-haspopup="menu"
       >
         <motion.div
           key={theme}

@@ -1,2 +1,0 @@
-- **[TorchSense](https://github.com/xibrer/torchsense)** — A PyTorch library for sensor data processing, providing I/O, signal processing, datasets, and model implementations for smartphone-based sensing applications.
-- **[SenseHub](https://github.com/xibrer/sensehub)** — A unified platform for smartphone-based sensing applications, integrating accelerometer-based health monitoring, audio enhancement, and multimodal sensor fusion.

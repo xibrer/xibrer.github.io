@@ -42,3 +42,11 @@ next-env.d.ts
 
 # wrangler
 .wrangler
+
+# local AI/developer tooling
+.claude/settings.local.json
+.understand-anything/
+PRISM/
+
+# PDF optimization intermediates
+tmp/pdfs/

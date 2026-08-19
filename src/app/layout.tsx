@@ -14,6 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const openGraphLocale = runtimeI18n.defaultLocale === 'zh' ? 'zh_CN' : 'en_US';
 
   return {
+    metadataBase: new URL(config.site.url),
     title: {
       default: config.site.title,
       template: `%s | ${config.site.title}`,
@@ -26,12 +27,22 @@ export async function generateMetadata(): Promise<Metadata> {
     icons: {
       icon: config.site.favicon,
     },
+    alternates: {
+      canonical: '/en/',
+      languages: { en: '/en/', zh: '/zh/', 'x-default': '/en/' },
+    },
     openGraph: {
       type: 'website',
       locale: openGraphLocale,
       title: config.site.title,
       description: config.site.description,
       siteName: `${config.author.name}'s Academic Website`,
+      url: '/en/',
+    },
+    twitter: {
+      card: 'summary',
+      title: config.site.title,
+      description: config.site.description,
     },
   };
 }
@@ -55,10 +66,14 @@ function buildLocaleBootstrapScript(config: ReturnType<typeof getRuntimeI18nConf
 
       let resolved = null;
 
+      if (cfg.enabled) {
+        resolved = matchLocale(location.pathname.split('/').filter(Boolean)[0]);
+      }
+
       if (!cfg.enabled) {
         resolved = cfg.defaultLocale;
       } else if (cfg.persist) {
-        resolved = matchLocale(localStorage.getItem(storageKey));
+        resolved = resolved || matchLocale(localStorage.getItem(storageKey));
       }
 
       if (!resolved) {
@@ -127,20 +142,32 @@ export default function RootLayout({
     siteTitleByLocale,
     lastUpdatedByLocale,
   } = buildLocalizedConfigMaps(targetLocales);
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: config.author.name,
+    alternateName: '王兴伟',
+    url: config.site.url,
+    image: `${config.site.url}${config.author.avatar}`,
+    jobTitle: config.author.title,
+    affiliation: {
+      '@type': 'CollegeOrUniversity',
+      name: config.author.institution,
+      url: 'https://www.buaa.edu.cn/',
+    },
+    email: `mailto:${config.social.email}`,
+    sameAs: [config.social.google_scholar, config.social.github].filter(Boolean),
+    knowsAbout: [
+      'Mobile and ubiquitous health sensing',
+      'Multimodal speech and audio enhancement',
+      'Millimeter-wave sensing',
+    ],
+  };
 
   return (
     <html lang={runtimeI18n.defaultLocale} className="scroll-smooth" suppressHydrationWarning>
       <head>
         <link rel="icon" href={config.site.favicon} type="image/svg+xml" />
-        <link rel="dns-prefetch" href="https://jialeliu.com" />
-        <link rel="preconnect" href="https://jialeliu.com" crossOrigin="" />
-        <link
-          rel="preload"
-          as="font"
-          type="font/woff2"
-          href="https://jialeliu.com/fonts/georgiab.woff2"
-          crossOrigin=""
-        />
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -168,6 +195,10 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, '\\u003c') }}
+        />
         <ThemeProvider>
           <LocaleProvider config={runtimeI18n}>
             <Navigation

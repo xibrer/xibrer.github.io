@@ -19,10 +19,12 @@ export type DynamicPageLocaleData =
 interface DynamicPageClientProps {
   dataByLocale: Record<string, DynamicPageLocaleData>;
   defaultLocale: string;
+  initialLocale?: string;
 }
 
-export default function DynamicPageClient({ dataByLocale, defaultLocale }: DynamicPageClientProps) {
-  const locale = useLocaleStore((state) => state.locale);
+export default function DynamicPageClient({ dataByLocale, defaultLocale, initialLocale }: DynamicPageClientProps) {
+  const storedLocale = useLocaleStore((state) => state.locale);
+  const locale = initialLocale || storedLocale;
   const fallback = dataByLocale[defaultLocale] || Object.values(dataByLocale)[0];
   const pageData = dataByLocale[locale] || fallback;
 

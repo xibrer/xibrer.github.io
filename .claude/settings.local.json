@@ -4,7 +4,14 @@
       "WebFetch(domain:claude.ai)",
       "WebFetch(domain:www.anthropic.com)",
       "mcp__plugin_everything-claude-code_exa__web_search_exa",
-      "mcp__plugin_everything-claude-code_exa__web_fetch_exa"
+      "mcp__plugin_everything-claude-code_exa__web_fetch_exa",
+      "Bash(cd /d D:/Workplace/xibrer.github.io)",
+      "Bash(set PROJECT_ROOT=D:/Workplace/xibrer.github.io)",
+      "Bash([ -f \"$PLUGIN/packages/core/dist/index.js\" ])",
+      "Read(//c/Users/xibr/.claude/plugins/cache/understand-anything/understand-anything/2.7.4/**)",
+      "Bash(pnpm install *)",
+      "Bash(pnpm --filter @understand-anything/core build)",
+      "PowerShell(Get-Command *)"
     ]
   }
 }

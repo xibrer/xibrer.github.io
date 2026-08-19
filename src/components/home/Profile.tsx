@@ -55,6 +55,18 @@ export default function Profile({ author, social, features, researchInterests }:
         }
     }, [features.enable_likes]);
 
+    useEffect(() => {
+        const handleEscape = (event: KeyboardEvent) => {
+            if (event.key !== 'Escape') return;
+            setShowAddress(false);
+            setIsAddressPinned(false);
+            setShowEmail(false);
+            setIsEmailPinned(false);
+        };
+        window.addEventListener('keydown', handleEscape);
+        return () => window.removeEventListener('keydown', handleEscape);
+    }, []);
+
     const handleLike = () => {
         const newLikedState = !hasLiked;
         setHasLiked(newLikedState);
@@ -159,6 +171,9 @@ export default function Profile({ author, social, features, researchInterests }:
                                         : 'text-neutral-600 dark:text-neutral-400 hover:text-accent'
                                         }`}
                                     aria-label={link.name}
+                                    aria-expanded={showAddress || isAddressPinned}
+                                    aria-controls="profile-location-popover"
+                                    aria-haspopup="dialog"
                                 >
                                     {isAddressPinned ? (
                                         <MapPinSolidIcon className="h-5 w-5" />
@@ -171,6 +186,9 @@ export default function Profile({ author, social, features, researchInterests }:
                                 <AnimatePresence>
                                     {(showAddress || isAddressPinned) && (
                                         <motion.div
+                                            id="profile-location-popover"
+                                            role="dialog"
+                                            aria-label={messages.profile.workAddress}
                                             initial={{ opacity: 0, y: 10, scale: 0.8 }}
                                             animate={{ opacity: 1, y: -10, scale: 1 }}
                                             exit={{ opacity: 0, y: -20, scale: 0.8 }}
@@ -236,6 +254,9 @@ export default function Profile({ author, social, features, researchInterests }:
                                         : 'text-neutral-600 dark:text-neutral-400 hover:text-accent'
                                         }`}
                                     aria-label={link.name}
+                                    aria-expanded={showEmail || isEmailPinned}
+                                    aria-controls="profile-email-popover"
+                                    aria-haspopup="dialog"
                                 >
                                     {isEmailPinned ? (
                                         <EnvelopeSolidIcon className="h-5 w-5" />
@@ -248,6 +269,9 @@ export default function Profile({ author, social, features, researchInterests }:
                                 <AnimatePresence>
                                     {(showEmail || isEmailPinned) && (
                                         <motion.div
+                                            id="profile-email-popover"
+                                            role="dialog"
+                                            aria-label={messages.profile.email}
                                             initial={{ opacity: 0, y: 10, scale: 0.8 }}
                                             animate={{ opacity: 1, y: -10, scale: 1 }}
                                             exit={{ opacity: 0, y: -20, scale: 0.8 }}
@@ -294,7 +318,7 @@ export default function Profile({ author, social, features, researchInterests }:
                             href={link.href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="p-2 sm:p-2 text-neutral-600 dark:text-neutral-400 hover:text-accent transition-colors duration-200"
+                            className="p-2 sm:p-2 text-neutral-600 dark:text-neutral-400 hover:text-accent transition-colors duration-200 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
                             aria-label={link.name}
                         >
                             <IconComponent className="h-5 w-5" />

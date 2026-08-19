@@ -2,6 +2,8 @@ export interface LocaleMessages {
   common: {
     all: string;
     copyToClipboard: string;
+    viewProject: string;
+    backToPublications: string;
   };
   navigation: {
     openMainMenu: string;
@@ -53,6 +55,8 @@ const en: LocaleMessages = {
   common: {
     all: 'All',
     copyToClipboard: 'Copy to clipboard',
+    viewProject: 'View Project',
+    backToPublications: 'Back to Publications',
   },
   navigation: {
     openMainMenu: 'Open main menu',
@@ -104,6 +108,8 @@ const zh: LocaleMessages = {
   common: {
     all: '全部',
     copyToClipboard: '复制到剪贴板',
+    viewProject: '查看项目',
+    backToPublications: '返回论文列表',
   },
   navigation: {
     openMainMenu: '打开主菜单',

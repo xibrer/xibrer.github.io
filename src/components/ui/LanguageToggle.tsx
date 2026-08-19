@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { LanguageIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
 import { cn } from '@/lib/utils';
@@ -13,12 +14,23 @@ interface LanguageToggleProps {
 
 export default function LanguageToggle({ i18n }: LanguageToggleProps) {
   const { locale, setLocale } = useLocaleStore();
+  const pathname = usePathname();
+  const router = useRouter();
   const [mounted, setMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setIsOpen(false);
+    };
+    window.addEventListener('keydown', handleEscape);
+    return () => window.removeEventListener('keydown', handleEscape);
+  }, [isOpen]);
 
   if (!i18n.enabled || !i18n.switcher || i18n.locales.length <= 1) {
     return null;
@@ -35,6 +47,15 @@ export default function LanguageToggle({ i18n }: LanguageToggleProps) {
   const currentLocale = i18n.locales.includes(locale) ? locale : i18n.defaultLocale;
   const currentLabel = i18n.labels[currentLocale] || currentLocale;
 
+  const switchLocale = (nextLocale: string) => {
+    const segments = pathname.split('/').filter(Boolean);
+    if (segments[0] && i18n.locales.includes(segments[0])) segments.shift();
+    const suffix = segments.length > 0 ? `/${segments.join('/')}` : '';
+    setLocale(nextLocale);
+    setIsOpen(false);
+    router.push(`/${nextLocale}${suffix}`);
+  };
+
   return (
     <div className="relative">
       <motion.button
@@ -43,6 +64,9 @@ export default function LanguageToggle({ i18n }: LanguageToggleProps) {
         type="button"
         onMouseDown={(e) => e.preventDefault()}
         onClick={() => setIsOpen(!isOpen)}
+        aria-expanded={isOpen}
+        aria-haspopup="menu"
+        aria-controls="language-menu"
         className={cn(
           'flex items-center justify-center gap-1 px-2 h-10 rounded-lg',
           'border border-neutral-200 bg-background hover:bg-neutral-50',
@@ -59,6 +83,9 @@ export default function LanguageToggle({ i18n }: LanguageToggleProps) {
 
       {isOpen && (
         <motion.div
+          id="language-menu"
+          role="menu"
+          aria-label={currentLabel}
           initial={{ opacity: 0, scale: 0.95, y: -10 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: -10 }}
@@ -72,10 +99,9 @@ export default function LanguageToggle({ i18n }: LanguageToggleProps) {
             {i18n.locales.map((localeOption) => (
               <button
                 key={localeOption}
-                onClick={() => {
-                  setLocale(localeOption);
-                  setIsOpen(false);
-                }}
+                role="menuitemradio"
+                aria-checked={currentLocale === localeOption}
+                onClick={() => switchLocale(localeOption)}
                 className={cn(
                   'flex items-center justify-between w-full px-3 py-2 text-sm',
                   'hover:bg-neutral-50 dark:hover:bg-neutral-700',

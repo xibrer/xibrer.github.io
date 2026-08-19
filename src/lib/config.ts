@@ -6,6 +6,7 @@ import type { I18nConfig } from '@/types/i18n';
 export interface SiteConfig {
   site: {
     title: string;
+    url: string;
     description: string;
     favicon: string;
     last_updated?: string;
