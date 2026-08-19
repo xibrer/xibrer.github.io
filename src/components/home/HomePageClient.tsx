@@ -23,6 +23,7 @@ interface SectionConfig {
   publications?: Publication[];
   items?: NewsItem[];
   cardItems?: { title: string; subtitle?: string; date?: string; content?: string; link?: string }[];
+  cardLayout?: CardPageConfig['layout'];
 }
 
 type PageData =
@@ -94,7 +95,12 @@ export default function HomePageClient({ dataByLocale, defaultLocale, initialLoc
                     return (
                       <CardPage
                         key={section.id}
-                        config={{ type: 'card', title: section.title || '', items: section.cardItems || [] }}
+                        config={{
+                          type: 'card',
+                          title: section.title || '',
+                          layout: section.cardLayout,
+                          items: section.cardItems || [],
+                        }}
                         embedded={true}
                       />
                     );

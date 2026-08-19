@@ -1,6 +1,7 @@
 type = "card"
 title = "Projects"
 description = "Open-source software for intelligent sensing and physiological signal processing."
+layout = "showcase"
 
 [[items]]
 title = "TorchSense"

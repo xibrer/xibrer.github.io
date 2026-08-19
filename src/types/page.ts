@@ -27,5 +27,6 @@ export interface CardItem {
 
 export interface CardPageConfig extends BasePageConfig {
     type: 'card';
+    layout?: 'list' | 'showcase';
     items: CardItem[];
 }

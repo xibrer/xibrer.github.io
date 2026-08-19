@@ -1,6 +1,7 @@
 type = "card"
 title = "项目"
 description = "面向智能感知与生理信号处理的开源软件。"
+layout = "showcase"
 
 [[items]]
 title = "TorchSense"

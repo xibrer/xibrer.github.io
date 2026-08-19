@@ -18,6 +18,7 @@ interface SectionConfig {
   publications?: Publication[];
   items?: Array<{ date: string; content: string }>;
   cardItems?: CardItem[];
+  cardLayout?: CardPageConfig['layout'];
 }
 
 type PageData =
@@ -60,9 +61,9 @@ function processSections(sections: SectionConfig[], locale?: string): SectionCon
       }
       case 'card': {
         const data = section.source
-          ? getTomlContent<{ items: CardItem[] }>(section.source, locale)
+          ? getTomlContent<{ items: CardItem[]; layout?: CardPageConfig['layout'] }>(section.source, locale)
           : null;
-        return { ...section, cardItems: data?.items || [] };
+        return { ...section, cardItems: data?.items || [], cardLayout: data?.layout };
       }
       default:
         return section;
