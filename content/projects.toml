@@ -9,3 +9,10 @@ date = "2024 - Present"
 content = "A modular deep-learning framework built on PyTorch Lightning for physiological and multimodal sensing. It provides configurable data modules, models, evaluation, visualization, and ONNX export for reproducible sensing research."
 link = "https://github.com/xibrer/torchsense"
 tags = ["PyTorch Lightning", "Physiological Sensing", "ONNX"]
+
+[[items]]
+title = "SenseHub"
+subtitle = "Smartphone Sensing Platform"
+date = "2024"
+content = "A unified platform for smartphone-based sensing applications, integrating accelerometer-based health monitoring, audio enhancement, and multimodal sensor fusion."
+link = "https://github.com/xibrer/sensehub"

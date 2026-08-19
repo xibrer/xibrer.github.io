@@ -9,3 +9,10 @@ date = "2024 - 至今"
 content = "一个基于 PyTorch Lightning 的模块化深度学习框架，面向生理信号与多模态感知研究，提供可配置的数据模块、模型、评估、可视化与 ONNX 导出能力。"
 link = "https://github.com/xibrer/torchsense"
 tags = ["PyTorch Lightning", "生理感知", "ONNX"]
+
+[[items]]
+title = "SenseHub"
+subtitle = "智能手机感知平台"
+date = "2024"
+content = "一个统一的智能手机感知应用平台，集成了基于加速度计的健康监测、音频增强和多模态传感器融合功能。"
+link = "https://github.com/xibrer/sensehub"
