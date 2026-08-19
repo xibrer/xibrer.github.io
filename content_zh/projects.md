@@ -1,0 +1,2 @@
+- **[TorchSense](https://github.com/xibrer/torchsense)** — 一个用于传感器数据处理的 PyTorch 库，提供 I/O、信号处理、数据集和模型实现，面向智能手机感知应用。
+- **[SenseHub](https://github.com/xibrer/sensehub)** — 一个统一的智能手机感知应用平台，集成了基于加速度计的健康监测、音频增强和多模态传感器融合功能。

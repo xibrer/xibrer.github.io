@@ -1,141 +1,71 @@
-<div align="center">
-  <img src="./logo.png" alt="PRISM Logo" height="100"/>
-</div>
+# Xingwei Wang (王兴伟)
 
-# PRISM
+Personal academic homepage of **Xingwei Wang**, PhD student at Beihang University. Research focuses on AIoT, smartphone-based healthcare sensing, and AI-augmented audio perception.
 
-**English** · [中文](README_cn.md) · [Demo](https://prism-demo.pages.dev)  · [Changelog](CHANGELOG.md)
+Built with [PRISM](https://github.com/xyjoey/PRISM) (Next.js + Tailwind CSS + TypeScript).
 
-**If you like this project, please give it a star ⭐️**
+🌐 [xibrer.github.io](https://xibrer.github.io)
 
-PRISM stands for **P**ortfolio & **R**esearch **I**nterface **S**ite **M**aker. It is a modern, configurable, and high-performance personal website template built with Next.js, Tailwind CSS, and TypeScript. It is designed for researchers, developers, and academics to showcase their work, publications, and portfolio with ease.
-
-Feel free to customize your own version of PRISM with coding agents.
-
-![PRISM Preview](screenshot.png)
-
-## ✨ Features
-
-*   **📄 Configuration-Driven**: Manage your entire site's content using simple `TOML`, `Markdown`, and `BibTeX` files in the `content/` directory. No code changes required for content updates!
-*   **📚 BibTeX Support**: Directly render your publications from a `.bib` file. Includes search, filtering (Year, Type), and automatic citation generation.
-*   **🎨 Modern Design**: Clean, responsive UI with a beautiful serif/sans-serif typography pairing, smooth animations (Framer Motion), and Dark Mode support.
-*   **⚡️ High Performance**: Built on Next.js 20 with Turbopack. Static export ensures blazing fast load times and easy deployment.
-*   **🔍 SEO Optimized**: Dynamic metadata generation for every page.
-*   **🧩 Dynamic Routing**: Easily add new pages by simply creating a config file.
-
-## 🚀 Getting Started
+## 🚀 Local Development
 
 ### Prerequisites
 
 *   Node.js 22 or later
-    *   **Important**: Please download and install Node.js manually from [https://nodejs.org/en/download](https://nodejs.org/en/download).
-    *   Better not to use the pre-installed version on your system, as it may be outdated or incompatible.
-*   npm, pnpm, or yarn
+*   npm
 
-### Installation
+### Setup
 
-1.  **Clone the repository:**
-
-    ```bash
-    git clone https://github.com/xyjoey/PRISM.git
-    cd PRISM
-    ```
-
-2.  **Install dependencies:**
-
-    ```bash
-    npm install
-    ```
-
-3.  **Run the development server:**
-
-    ```bash
-    npm run dev
-    ```
-
-    Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-## 🛠️ Configuration
-
-All content lives in the `content/` directory.
-
-### 1. Global Site Config (`content/config.toml`)
-Configure your site title, author details, social links, and navigation menu here.
-
-```toml
-[site]
-title = "Your Name"
-description = "Personal website of Your Name"
-url = "https://your-website.com"
-
-[author]
-name = "Your Name"
-title = "PhD Student / Researcher"
-# ...
-
-[features]
-enable_likes = true
+```bash
+npm install
+npm run dev
 ```
 
-### 2. Homepage (`content/about.toml`)
-Customize the "About" section, "News", and "Selected Publications" on the homepage.
+Open [http://localhost:3000](http://localhost:3000).
 
-### 3. Publications (`content/publications.bib`)
-Export your publications from Google Scholar, Zotero, or Mendeley to `content/publications.bib`. PRISM automatically parses this file to generate your Publications page. Customize the display of publications by changing `selected`, `preview` and `description` keys in the bib file. 
+## 🛠️ Content Management
 
-Publication titles support a subset of BibTeX inline formatting commands, including `\textit{}`, `\emph{}`, `\textbf{}`, `\textsc{}`, `\textsuperscript{}` and `\textsubscript{}`.
+All content lives in the `content/` directory. No code changes needed for content updates.
 
-### 4. Adding New Pages
-To add a new page (e.g., "Projects"), create a TOML file in `content/` (e.g., `content/projects.toml`) and add it to the `navigation` list in `content/config.toml`.
+### Global Site Config (`content/config.toml`)
+Site title, author details, social links, navigation menu.
 
-Supported page types:
-*   `text`: Renders Markdown content (Great for CVs, Bio).
-*   `card`: Renders a list of cards (Great for Projects, Awards). Content of each card item supports Markdown.
-*   `publication`: Renders the full publications list with filters.
+### Publications (`content/publications.bib`)
+Export from Google Scholar, Zotero, or Mendeley. Supports `selected`, `preview`, `description` keys. PDF links are configured in `content/publications.toml` under `[pdfs]`.
 
-### 5. I18N Support (`content_<locale>/`)
-PRISM now supports i18n, i.e., multi-language.
+### Adding Pages
+Create a TOML file in `content/` and add it to `navigation` in `content/config.toml`.
 
-*   Default language lives in `content/`.
-*   Additional languages live in `content_<locale>/` (for example: `content_zh/`, `content_en/`).
-*   Keep the same filenames across directories. Example:
-    *   `content/cv.md` (default)
-    *   `content_zh/cv.md`
-*   If a localized file is missing, PRISM automatically falls back to the default `content/` version.
+Supported types:
+*   `text` — Renders Markdown (CV, Bio)
+*   `card` — Card list (Projects, Awards)
+*   `publication` — Full publications list with filters
 
-Configure language behavior in `content/config.toml`:
+### Bilingual Support (`content_<locale>/`)
+*   Default: `content/`
+*   Chinese: `content_zh/`
+*   Missing localized files fall back to `content/`
 
-## 📦 Deployment
-
-PRISM is optimized for static deployment.
+## 📦 Deploy
 
 ```bash
 npm run build
 ```
 
-This generates a static `out/` directory that can be hosted anywhere.
+Static `out/` directory is generated. GitHub Actions auto-deploys on push to `main`.
 
-👉 **[Read the full Deployment Guide](docs/deployment.md)** for instructions on deploying to **GitHub Pages** and **Cloudflare Pages**.
+See [docs/deployment.md](docs/deployment.md) for details.
 
 ## 📂 Project Structure
 
 ```
-PRISM/
-├── content/              # All user-editable content (TOML, BibTeX, MD)
-├── public/               # Static assets (images, papers)
+├── content/              # User-editable content (TOML, BibTeX, MD)
+├── content_zh/           # Chinese translations
+├── public/               # Static assets (images, PDFs)
 ├── src/
 │   ├── app/              # Next.js App Router
 │   ├── components/       # React components
-│   ├── lib/              # Utility functions (parsers, config loaders)
+│   ├── lib/              # Utility functions
 │   └── types/            # TypeScript definitions
 ├── next.config.ts        # Next.js configuration
-└── tailwind.config.ts    # Tailwind CSS configuration
+└── .github/workflows/    # CI/CD (GitHub Pages deploy)
 ```
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

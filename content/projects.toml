@@ -1,0 +1,17 @@
+type = "card"
+title = "Projects"
+description = "Open-source projects I have developed."
+
+[[items]]
+title = "TorchSense"
+subtitle = "PyTorch Library for Sensor Data"
+date = "2024"
+content = "A PyTorch library for sensor data processing, providing I/O, signal processing, datasets, and model implementations for smartphone-based sensing applications."
+link = "https://github.com/xibrer/torchsense"
+
+[[items]]
+title = "SenseHub"
+subtitle = "Smartphone Sensing Platform"
+date = "2024"
+content = "A unified platform for smartphone-based sensing applications, integrating accelerometer-based health monitoring, audio enhancement, and multimodal sensor fusion."
+link = "https://github.com/xibrer/sensehub"

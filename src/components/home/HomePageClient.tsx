@@ -14,7 +14,7 @@ import { useLocaleStore } from '@/lib/stores/localeStore';
 
 interface SectionConfig {
   id: string;
-  type: 'markdown' | 'publications' | 'list';
+  type: 'markdown' | 'publications' | 'list' | 'card';
   title?: string;
   source?: string;
   filter?: string;
@@ -22,6 +22,7 @@ interface SectionConfig {
   content?: string;
   publications?: Publication[];
   items?: NewsItem[];
+  cardItems?: { title: string; subtitle?: string; date?: string; content?: string; link?: string }[];
 }
 
 type PageData =
@@ -85,6 +86,14 @@ export default function HomePageClient({ dataByLocale, defaultLocale }: HomePage
                         publications={section.publications || []}
                         title={section.title}
                         enableOnePageMode={data.enableOnePageMode}
+                      />
+                    );
+                  case 'card':
+                    return (
+                      <CardPage
+                        key={section.id}
+                        config={{ type: 'card', title: section.title || '', items: section.cardItems || [] }}
+                        embedded={true}
                       />
                     );
                   case 'list':

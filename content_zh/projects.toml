@@ -1,0 +1,17 @@
+type = "card"
+title = "项目"
+description = "我开发的开源项目。"
+
+[[items]]
+title = "TorchSense"
+subtitle = "面向传感器数据的 PyTorch 库"
+date = "2024"
+content = "一个用于传感器数据处理的 PyTorch 库，提供 I/O、信号处理、数据集和模型实现，面向智能手机感知应用。"
+link = "https://github.com/xibrer/torchsense"
+
+[[items]]
+title = "SenseHub"
+subtitle = "智能手机感知平台"
+date = "2024"
+content = "一个统一的智能手机感知应用平台，集成了基于加速度计的健康监测、音频增强和多模态传感器融合功能。"
+link = "https://github.com/xibrer/sensehub"

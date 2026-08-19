@@ -1,18 +1,17 @@
 [site]
 title = "王兴伟 (Xingwei Wang)"
-description = "北京工业大学数学系硕士生个人主页——智能手机感知、AI医疗健康与音频感知研究。"
-last_updated = "2026年5月16日"
+description = "北京航空航天大学博士研究生王兴伟的个人主页——AIoT、智能手机感知、医疗健康与音频感知研究。"
+last_updated = "2026年8月19日"
 
 [author]
 name = "王兴伟"
-title = "硕士研究生"
-institution = "北京工业大学"
+title = "博士研究生"
+institution = "北京航空航天大学"
 
 [social]
 location = "北京，中国"
 location_details = [
-  "数学系，",
-  "北京工业大学"
+  "北京航空航天大学"
 ]
 
 [[navigation]]
@@ -26,6 +25,12 @@ title = "论文"
 type = "page"
 target = "publications"
 href = "/publications"
+
+[[navigation]]
+title = "项目"
+type = "page"
+target = "projects"
+href = "/projects"
 
 [[navigation]]
 title = "奖项"
