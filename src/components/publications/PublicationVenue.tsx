@@ -33,7 +33,7 @@ export default function PublicationVenue({ publication }: PublicationVenueProps)
         <>
             {abbreviation && (
                 <>
-                    <strong>{abbreviation}</strong>
+                    <strong className="text-red-600 dark:text-red-400">{abbreviation}</strong>
                     <span aria-hidden="true"> · </span>
                 </>
             )}
