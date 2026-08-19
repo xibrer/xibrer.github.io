@@ -1,6 +1,6 @@
 'use client';
 
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import React, { useEffect, useId, useRef, useState } from 'react';
 import type { KeyboardEvent } from 'react';
 import ReactMarkdown from 'react-markdown';
@@ -41,7 +41,7 @@ interface CardContentProps {
 
 function CardContent({ item, embedded, viewProjectLabel }: CardContentProps) {
     return (
-        <>
+        <div className="flex flex-1 flex-col">
             <div className="flex justify-between items-start gap-4 mb-2">
                 <h3 className={`${embedded ? "text-lg" : "text-xl"} font-semibold text-primary`}>{item.title}</h3>
                 {item.date && (
@@ -70,17 +70,19 @@ function CardContent({ item, embedded, viewProjectLabel }: CardContentProps) {
                 </div>
             )}
             {item.link && (
-                <a
-                    href={item.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-4 inline-flex items-center gap-1.5 rounded-md bg-accent px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-accent-dark focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 dark:focus:ring-offset-neutral-900"
-                >
-                    {viewProjectLabel}
-                    <ArrowTopRightOnSquareIcon className="h-4 w-4" aria-hidden="true" />
-                </a>
+                <div className="mt-auto pt-4">
+                    <a
+                        href={item.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 rounded-md bg-accent px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-accent-dark focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 dark:focus:ring-offset-neutral-900"
+                    >
+                        {viewProjectLabel}
+                        <ArrowTopRightOnSquareIcon className="h-4 w-4" aria-hidden="true" />
+                    </a>
+                </div>
             )}
-        </>
+        </div>
     );
 }
 
@@ -180,21 +182,32 @@ function ProjectShowcase({ config, embedded, viewProjectLabel }: ProjectShowcase
                 </div>
             </div>
 
-            <AnimatePresence mode="wait" initial={false}>
-                <motion.div
-                    key={selectedIndex}
-                    id={`${instanceId}-project-panel-${selectedIndex}`}
-                    role="tabpanel"
-                    aria-labelledby={`${instanceId}-project-tab-${selectedIndex}`}
-                    initial={{ opacity: 0, x: 12 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -12 }}
-                    transition={{ duration: 0.18, ease: 'easeOut' }}
-                    className={`${embedded ? 'min-h-52 p-4' : 'min-h-60 p-6'}`}
-                >
-                    <CardContent item={activeItem} embedded={embedded} viewProjectLabel={viewProjectLabel} />
-                </motion.div>
-            </AnimatePresence>
+            <div className="grid">
+                {config.items.map((item, index) => {
+                    const isActive = index === selectedIndex;
+
+                    return (
+                        <motion.div
+                            key={item.title}
+                            id={`${instanceId}-project-panel-${index}`}
+                            role="tabpanel"
+                            aria-labelledby={`${instanceId}-project-tab-${index}`}
+                            aria-hidden={!isActive}
+                            inert={!isActive}
+                            initial={false}
+                            animate={{ opacity: isActive ? 1 : 0, x: isActive ? 0 : 12 }}
+                            transition={{ duration: 0.18, ease: 'easeOut' }}
+                            className={`col-start-1 row-start-1 flex flex-col ${embedded ? 'min-h-52 p-4' : 'min-h-60 p-6'} ${
+                                isActive
+                                    ? 'relative z-10 pointer-events-auto'
+                                    : 'pointer-events-none select-none'
+                            }`}
+                        >
+                            <CardContent item={item} embedded={embedded} viewProjectLabel={viewProjectLabel} />
+                        </motion.div>
+                    );
+                })}
+            </div>
         </div>
     );
 }
