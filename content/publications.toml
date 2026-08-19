@@ -4,7 +4,7 @@ description = "A collection of my research work."
 source = "publications.bib"
 
 [pdfs]
-wang2026largecall = "/LargeCall.pdf"
+wang2026largecall = "/LargeCall_Large-Model-Assisted_Phone_Call_Enhancement_Using_Smartphones_Built-in_Accelerometer.pdf"
 wang2025acccall = "/AccCall.pdf"
 wang2024bp = "/bp.pdf"
 wang2023ecg = "/ecg.pdf"
