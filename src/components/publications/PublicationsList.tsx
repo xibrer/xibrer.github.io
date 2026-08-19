@@ -17,6 +17,7 @@ import { PublicationPageConfig } from '@/types/page';
 import { cn } from '@/lib/utils';
 import { useMessages } from '@/lib/i18n/useMessages';
 import FormattedBibTeXText from './FormattedBibTeXText';
+import PublicationVenue from './PublicationVenue';
 
 interface PublicationsListProps {
     config: PublicationPageConfig;
@@ -232,7 +233,7 @@ export default function PublicationsList({ config, publications, embedded = fals
                                         ))}
                                     </p>
                                     <p className="text-sm font-medium text-neutral-800 dark:text-neutral-600 mb-3">
-                                        {pub.journal || pub.conference} {pub.year}
+                                        <PublicationVenue publication={pub} />
                                     </p>
 
                                     {pub.description && (

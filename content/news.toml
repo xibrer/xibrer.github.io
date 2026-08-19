@@ -1,19 +1,35 @@
 [[news]]
 date = "2026-08"
-content = "Started my PhD at Beihang University"
+content = "Began my PhD studies at Beihang University."
+
+[[news]]
+date = "2026-05"
+content = "Our paper LargeCall was accepted to IEEE INFOCOM 2026."
+
+[[news]]
+date = "2025-09"
+content = "Our paper AccCall was published in ACM IMWUT (UbiComp 2025)."
+
+[[news]]
+date = "2024-05"
+content = "Our work on smartphone-based blood pressure measurement was published in ACM IMWUT (UbiComp 2024)."
 
 [[news]]
 date = "2023-09"
-content = "Beginning master study at Beijing University of Technology"
+content = "Our work on user-independent ECG measurement was published in ACM IMWUT (UbiComp 2023)."
+
+[[news]]
+date = "2023-09"
+content = "Began my M.S. studies in Mathematics at Beijing University of Technology."
 
 [[news]]
 date = "2023-06"
-content = "Research Intern at Soochow University, led by Prof. Lei Wang"
+content = "Joined Soochow University as a research intern under the supervision of Prof. Lei Wang."
+
+[[news]]
+date = "2023-06"
+content = "My undergraduate thesis received the highest ranking in the school."
 
 [[news]]
 date = "2021-09"
-content = "Joint training at Shenzhen Institute of Advanced Technology, led by Prof. Yong Zhang"
-
-[[news]]
-date = "2023-06"
-content = "Highest-ranking graduation project in the entire school"
+content = "Began joint research training at the Shenzhen Institute of Advanced Technology under the supervision of Prof. Yong Zhang."

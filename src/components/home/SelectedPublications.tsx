@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Publication } from '@/types/publication';
 import { useMessages } from '@/lib/i18n/useMessages';
 import FormattedBibTeXText from '@/components/publications/FormattedBibTeXText';
+import PublicationVenue from '@/components/publications/PublicationVenue';
 import { DocumentArrowDownIcon } from '@heroicons/react/24/outline';
 
 interface SelectedPublicationsProps {
@@ -59,7 +60,7 @@ export default function SelectedPublications({ publications, title, enableOnePag
                             ))}
                         </p>
                         <p className="text-sm text-neutral-600 dark:text-neutral-500 mb-2">
-                            {pub.journal || pub.conference}
+                            <PublicationVenue publication={pub} />
                         </p>
                         {pub.description && (
                             <p className="text-sm text-neutral-500 dark:text-neutral-500 line-clamp-2">
