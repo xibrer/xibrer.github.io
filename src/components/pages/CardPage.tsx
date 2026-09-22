@@ -236,7 +236,10 @@ export default function CardPage({ config, embedded = false }: { config: CardPag
                 </div>
             </div>
 
-            {config.layout === 'showcase' ? (
+            {/* The sliding showcase is a homepage device only: on the standalone
+                page (`embedded === false`) the items stack as plain blocks, which
+                is easier to scan and to link into. */}
+            {config.layout === 'showcase' && embedded ? (
                 <ProjectShowcase
                     config={config}
                     embedded={embedded}

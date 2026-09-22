@@ -11,7 +11,11 @@ export function getPublicationMetadata(id: string, locale: 'en' | 'zh'): Metadat
   if (!publication) return {};
   const config = getConfig(locale);
   const path = `/${locale}/publications/${publication.id}/`;
-  const description = publication.abstract || publication.description || config.site.description;
+  // Prefer the one-line `description` for metadata: the `abstract` field now
+  // holds the full published abstract (1500-2100 chars), which search engines
+  // and social cards truncate. The abstract is still rendered on the page and
+  // emitted in the ScholarlyArticle JSON-LD.
+  const description = publication.description || publication.abstract || config.site.description;
   return {
     title: publication.title,
     description,

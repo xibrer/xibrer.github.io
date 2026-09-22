@@ -25,7 +25,13 @@ export async function generateMetadata(): Promise<Metadata> {
     creator: config.author.name,
     publisher: config.author.name,
     icons: {
-      icon: config.site.favicon,
+      // Rounded-corner PNG set (public/favicon*.png). Declaring the real type
+      // and both sizes here also removes the duplicate <link rel="icon"> that
+      // used to be hand-written into <head>.
+      icon: [
+        { url: '/favicon-32.png', type: 'image/png', sizes: '32x32' },
+        { url: config.site.favicon, type: 'image/png', sizes: '256x256' },
+      ],
     },
     alternates: {
       canonical: '/en/',
@@ -167,7 +173,6 @@ export default function RootLayout({
   return (
     <html lang={runtimeI18n.defaultLocale} className="scroll-smooth" suppressHydrationWarning>
       <head>
-        <link rel="icon" href={config.site.favicon} type="image/svg+xml" />
         <link rel="preload" href="/fonts/dm-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/montserrat-latin-500-normal.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/fragment-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />

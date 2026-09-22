@@ -19,11 +19,6 @@
 - Research on smartphone-based healthcare sensing using built-in accelerometer
 - Published 4 papers (3 student first-author, 1 co-first-author) in ACM IMWUT (UbiComp) and INFOCOM
 
-**Research Intern**
-Soochow University, led by Prof. Lei Wang
-*2023/06 - 2023/09*
-- Research on audio enhancement and mobile sensing
-
 **Joint Training**
 Shenzhen Institute of Advanced Technology, led by Prof. Yong Zhang
 *2021/09 - 2023/06*
