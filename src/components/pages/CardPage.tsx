@@ -18,18 +18,18 @@ const markdownComponents = {
             {...props}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-accent font-medium transition-all duration-200 rounded hover:bg-accent/10 hover:shadow-sm"
+            className="text-ds-brand underline underline-offset-4 decoration-1 transition-colors hover:text-ds-brand-soft"
         />
     ),
     blockquote: ({ children }: React.ComponentProps<'blockquote'>) => (
-        <blockquote className="border-l-4 border-accent/50 pl-4 italic my-4 text-neutral-600 dark:text-neutral-500">
+        <blockquote className="border-l-2 border-ds-border-divider pl-4 italic my-4 text-ds-description">
             {children}
         </blockquote>
     ),
-    strong: ({ children }: React.ComponentProps<'strong'>) => <strong className="font-semibold text-primary">{children}</strong>,
+    strong: ({ children }: React.ComponentProps<'strong'>) => <strong className="font-medium text-ds-primary">{children}</strong>,
     em: ({ children }: React.ComponentProps<'em'>) => <em className="italic">{children}</em>,
     code: ({ children }: React.ComponentProps<'code'>) => (
-        <code className="px-1.5 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 text-[0.95em]">{children}</code>
+        <code className="px-1.5 py-0.5 rounded bg-ds-code font-mono text-[0.95em]">{children}</code>
     ),
 };
 
@@ -43,18 +43,18 @@ function CardContent({ item, embedded, viewProjectLabel }: CardContentProps) {
     return (
         <div className="flex flex-1 flex-col">
             <div className="flex justify-between items-start gap-4 mb-2">
-                <h3 className={`${embedded ? "text-lg" : "text-xl"} font-semibold text-primary`}>{item.title}</h3>
+                <h3 className={embedded ? "ds-text-title text-ds-primary" : "ds-text-subtitle text-ds-primary"}>{item.title}</h3>
                 {item.date && (
-                    <span className="shrink-0 text-sm text-neutral-500 font-medium bg-neutral-100 dark:bg-neutral-800 px-2 py-1 rounded">
+                    <span className="ds-text-xs shrink-0 text-ds-placeholder font-mono bg-ds-code border border-ds-border-subtle px-2 py-1 rounded-ds-sm">
                         {item.date}
                     </span>
                 )}
             </div>
             {item.subtitle && (
-                <p className={`${embedded ? "text-sm" : "text-base"} text-accent font-medium mb-3`}>{item.subtitle}</p>
+                <p className={`${embedded ? "ds-text-caption" : "ds-text-body"} text-ds-brand mb-3`}>{item.subtitle}</p>
             )}
             {item.content && (
-                <div className={`${embedded ? "text-sm" : "text-base"} text-neutral-600 dark:text-neutral-500 leading-relaxed`}>
+                <div className={`${embedded ? "ds-text-caption" : "ds-text-body"} text-ds-description leading-[1.75]`}>
                     <ReactMarkdown components={markdownComponents}>
                         {item.content}
                     </ReactMarkdown>
@@ -63,7 +63,7 @@ function CardContent({ item, embedded, viewProjectLabel }: CardContentProps) {
             {item.tags && (
                 <div className="flex flex-wrap gap-2 mt-4">
                     {item.tags.map(tag => (
-                        <span key={tag} className="text-xs text-neutral-500 bg-neutral-50 dark:bg-neutral-800/50 px-2 py-1 rounded border border-neutral-100 dark:border-neutral-800">
+                        <span key={tag} className="ds-text-xs font-mono text-ds-description bg-ds-code border border-ds-border-subtle px-2 py-1 rounded-ds-sm">
                             {tag}
                         </span>
                     ))}
@@ -75,10 +75,10 @@ function CardContent({ item, embedded, viewProjectLabel }: CardContentProps) {
                         href={item.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 rounded-md bg-accent px-3 py-1.5 text-sm font-medium text-white dark:text-neutral-900 transition-colors hover:bg-accent-dark focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 dark:focus:ring-offset-neutral-900"
+                        className="ds-btn-secondary ds-btn-s w-fit"
                     >
                         {viewProjectLabel}
-                        <ArrowTopRightOnSquareIcon className="h-4 w-4" aria-hidden="true" />
+                        <ArrowTopRightOnSquareIcon aria-hidden="true" />
                     </a>
                 </div>
             )}
@@ -132,13 +132,13 @@ function ProjectShowcase({ config, embedded, viewProjectLabel }: ProjectShowcase
     };
 
     return (
-        <div className="glass-inset overflow-hidden rounded-2xl">
-            <div className="border-b border-neutral-200 bg-neutral-50/80 p-2 dark:border-neutral-800 dark:bg-neutral-800/30">
+        <div className="glass-inset overflow-hidden">
+            <div className="border-b border-ds-border-default p-2">
                 <div className="overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                     <div
                         role="tablist"
                         aria-label={config.title}
-                        className="grid min-w-[18rem] gap-1 rounded-xl bg-neutral-100 p-1 dark:bg-neutral-800"
+                        className="grid min-w-[18rem] gap-1 rounded-ds-pill border border-ds-border-default bg-ds-surface-3 p-1"
                         style={{ gridTemplateColumns: `repeat(${config.items.length}, minmax(8rem, 1fr))` }}
                     >
                         {config.items.map((item, index) => {
@@ -158,20 +158,20 @@ function ProjectShowcase({ config, embedded, viewProjectLabel }: ProjectShowcase
                                     onFocus={() => setActiveIndex(index)}
                                     onClick={() => setActiveIndex(index)}
                                     onKeyDown={(event) => handleKeyDown(event, index)}
-                                    className={`relative isolate flex min-w-0 items-center gap-2 rounded-lg px-3 py-2.5 text-left text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
+                                    className={`ds-text-caption relative isolate flex min-w-0 items-center gap-2 rounded-ds-pill px-3 py-2.5 text-left font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
                                         isActive
-                                            ? 'text-primary'
-                                            : 'text-neutral-500 hover:text-primary dark:text-neutral-500'
+                                            ? 'text-ds-primary'
+                                            : 'text-ds-description hover:text-ds-primary'
                                     }`}
                                 >
                                     {isActive && (
                                         <motion.span
                                             layoutId={`${instanceId}-project-track`}
-                                            className="absolute inset-0 -z-10 rounded-lg bg-white shadow-sm ring-1 ring-neutral-200 dark:bg-neutral-900 dark:ring-neutral-700"
+                                            className="absolute inset-0 -z-10 rounded-ds-pill bg-ds-raised shadow-[0_1px_3px_rgba(0,0,0,.08)]"
                                             transition={{ type: 'spring', stiffness: 420, damping: 34 }}
                                         />
                                     )}
-                                    <span className={`text-[0.65rem] tracking-[0.18em] ${isActive ? 'text-accent' : 'text-neutral-400'}`}>
+                                    <span className={`font-mono text-[0.65rem] tracking-[0.18em] ${isActive ? 'text-ds-brand' : 'text-ds-placeholder'}`}>
                                         {String(index + 1).padStart(2, '0')}
                                     </span>
                                     <span className="truncate">{item.title}</span>
@@ -223,9 +223,9 @@ export default function CardPage({ config, embedded = false }: { config: CardPag
             transition={{ duration: 0.6, delay: 0.4 }}
         >
             <div className={embedded ? "mb-4" : "mb-8"}>
-                <h1 className={`${embedded ? "text-2xl" : "text-4xl"} font-serif font-bold text-primary mb-4`}>{config.title}</h1>
+                <h1 className={embedded ? "ds-text-heading2 text-ds-primary mb-4" : "ds-text-heading1 text-ds-primary mb-4"}>{config.title}</h1>
                 {config.description && (
-                    <div className={`${embedded ? "text-base" : "text-lg"} text-neutral-600 dark:text-neutral-500 max-w-2xl leading-relaxed`}>
+                    <div className={`${embedded ? "ds-text-body" : "ds-text-subtitle"} text-ds-description max-w-2xl leading-[1.75]`}>
                         <ReactMarkdown components={markdownComponents}>
                             {config.description}
                         </ReactMarkdown>
@@ -247,7 +247,7 @@ export default function CardPage({ config, embedded = false }: { config: CardPag
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.4, delay: 0.1 * index }}
-                            className={`glass-inset glass-interactive ${embedded ? "p-4" : "p-6"} rounded-xl transition-all duration-200`}
+                            className={`glass-inset glass-interactive ${embedded ? "p-4" : "p-6"} transition-colors duration-200`}
                         >
                             <CardContent
                                 item={item}

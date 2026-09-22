@@ -190,7 +190,7 @@ export default function Navigation({
                 >
                   <Link
                     href={localizeHref('/')}
-                    className="block truncate text-base sm:text-xl lg:text-2xl font-serif font-semibold text-primary hover:text-accent transition-colors duration-200"
+                    className="block truncate text-base sm:text-lg font-medium tracking-[-0.01em] text-ds-primary transition-colors duration-200 hover:text-ds-brand"
                   >
                     {effectiveSiteTitle}
                   </Link>
@@ -206,7 +206,7 @@ export default function Navigation({
                       {indicatorStyle && (
                         <motion.div
                           className={cn(
-                            'absolute rounded-lg pointer-events-none',
+                            'absolute rounded-ds-pill pointer-events-none',
                             hoveredHref && hoveredHref !== activeHref
                               ? 'bg-accent/[0.07]'
                               : 'bg-accent/10'
@@ -238,12 +238,12 @@ export default function Navigation({
                             onClick={() => enableOnePageMode && setActiveHash(`#${item.target}`)}
                             onMouseEnter={() => setHoveredHref(href)}
                             className={cn(
-                              'relative px-3 py-2 text-sm font-medium rounded-lg transition-colors duration-150',
+                              'ds-text-caption relative px-3.5 py-2 font-medium rounded-ds-pill transition-colors duration-150',
                               isActive
-                                ? 'text-primary'
+                                ? 'text-ds-primary'
                                 : hoveredHref === href
-                                  ? 'text-primary'
-                                  : 'text-neutral-600'
+                                  ? 'text-ds-primary'
+                                  : 'text-ds-description'
                             )}
                           >
                             {item.title}
@@ -259,7 +259,7 @@ export default function Navigation({
                 <div className="lg:hidden flex shrink-0 items-center space-x-2">
                   <LanguageToggle i18n={i18n} />
                   <ThemeToggle />
-                  <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-neutral-600 hover:text-primary hover:bg-neutral-100 dark:hover:bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-accent transition-colors duration-200">
+                  <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-ds-pill text-ds-description hover:text-ds-primary hover:bg-ds-hover focus:outline-none focus:ring-2 focus:ring-inset focus:ring-accent transition-colors duration-200">
                     <span className="sr-only">{messages.navigation.openMainMenu}</span>
                     <motion.div
                       animate={{ rotate: open ? 180 : 0 }}
@@ -312,10 +312,10 @@ export default function Navigation({
                             prefetch={true}
                             onClick={() => enableOnePageMode && setActiveHash(item.href === '/' ? '' : `#${item.target}`)}
                             className={cn(
-                              'block px-3 py-2 rounded-md text-base font-medium transition-all duration-200',
+                              'ds-text-title block px-3 py-2.5 rounded-ds-media transition-colors duration-200',
                               isActive
-                                ? 'text-primary bg-accent/10 border-l-4 border-accent'
-                                : 'text-neutral-600 hover:text-primary hover:bg-neutral-50'
+                                ? 'text-ds-primary bg-accent/10'
+                                : 'text-ds-description hover:text-ds-primary hover:bg-ds-hover'
                             )}
                           >
                             {item.title}

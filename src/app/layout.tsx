@@ -168,13 +168,16 @@ export default function RootLayout({
     <html lang={runtimeI18n.defaultLocale} className="scroll-smooth" suppressHydrationWarning>
       <head>
         <link rel="icon" href={config.site.favicon} type="image/svg+xml" />
+        <link rel="preload" href="/fonts/dm-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/montserrat-latin-500-normal.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/fragment-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <script
           dangerouslySetInnerHTML={{
             __html: `
               try {
                 const theme = localStorage.getItem('theme-storage');
                 const parsed = theme ? JSON.parse(theme) : null;
-                const setting = parsed?.state?.theme || 'system';
+                const setting = parsed?.state?.theme || 'dark';
                 const prefersDark = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
                 const effective = setting === 'dark' ? 'dark' : (setting === 'light' ? 'light' : (prefersDark ? 'dark' : 'light'));
                 var root = document.documentElement;
@@ -182,8 +185,8 @@ export default function RootLayout({
                 root.setAttribute('data-theme', effective);
               } catch (e) {
                 var root = document.documentElement;
-                root.classList.add('light');
-                root.setAttribute('data-theme', 'light');
+                root.classList.add('dark');
+                root.setAttribute('data-theme', 'dark');
               }
             `,
           }}
@@ -209,7 +212,7 @@ export default function RootLayout({
               itemsByLocale={navigationByLocale}
               siteTitleByLocale={siteTitleByLocale}
             />
-            <main className="min-h-screen pt-16 lg:pt-20">
+            <main className="min-h-screen pt-20 lg:pt-24">
               {children}
             </main>
             <Footer

@@ -48,8 +48,8 @@ export function ThemeToggle() {
 
   if (!mounted) {
     return (
-      <div className="flex items-center justify-center w-10 h-10 rounded-lg border border-neutral-200 dark:border-[rgba(148,163,184,0.24)] bg-background dark:bg-neutral-800">
-        <div className="w-4 h-4 rounded-full bg-neutral-300 animate-pulse" />
+      <div className="flex items-center justify-center w-10 h-10 rounded-ds-pill glass-control">
+        <div className="w-4 h-4 rounded-full bg-ds-surface-5 animate-pulse" />
       </div>
     );
   }
@@ -64,16 +64,16 @@ export function ThemeToggle() {
         type="button"
         onMouseDown={(e) => e.preventDefault()}
         onClick={() => {
-          const order: Theme[] = ['system', 'light', 'dark'];
+          const order: Theme[] = ['dark', 'light', 'system'];
           const index = order.indexOf(theme);
           const next = order[(index + 1) % order.length];
           setTheme(next);
         }}
         className={cn(
-          'flex items-center justify-center w-10 h-10 rounded-lg',
+          'flex items-center justify-center w-10 h-10 rounded-ds-pill',
           'glass-control',
           'transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50',
-          'text-neutral-600 hover:text-primary'
+          'text-ds-description hover:text-ds-primary'
         )}
         title={`${messages.theme.currentTheme}: ${currentTheme.label}. ${messages.theme.cycleTheme}.`}
         aria-label={`${messages.theme.currentTheme}: ${currentTheme.label}. ${messages.theme.cycleTheme}.`}
@@ -110,8 +110,8 @@ export function ThemeToggleDropdown() {
 
   if (!mounted) {
     return (
-      <div className="flex items-center justify-center w-10 h-10 rounded-lg border border-neutral-200 dark:border-[rgba(148,163,184,0.24)] bg-background dark:bg-neutral-800">
-        <div className="w-4 h-4 rounded-full bg-neutral-300 animate-pulse" />
+      <div className="flex items-center justify-center w-10 h-10 rounded-ds-pill glass-control">
+        <div className="w-4 h-4 rounded-full bg-ds-surface-5 animate-pulse" />
       </div>
     );
   }
@@ -127,11 +127,10 @@ export function ThemeToggleDropdown() {
         onMouseDown={(e) => e.preventDefault()}
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
-          'flex items-center justify-center w-10 h-10 rounded-lg',
-          'border border-neutral-200 bg-background hover:bg-neutral-50',
-          'dark:border-[rgba(148,163,184,0.24)] dark:bg-neutral-800 dark:hover:bg-neutral-700',
+          'flex items-center justify-center w-10 h-10 rounded-ds-pill',
+          'glass-control',
           'transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50',
-          'text-neutral-600 hover:text-primary dark:text-neutral-400 dark:hover:text-white'
+          'text-ds-description hover:text-ds-primary'
         )}
         title={`${messages.theme.currentTheme}: ${currentTheme.label}`}
         aria-label={`${messages.theme.currentTheme}: ${currentTheme.label}`}
@@ -154,9 +153,7 @@ export function ThemeToggleDropdown() {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: -10 }}
           className={cn(
-            'absolute right-0 mt-2 w-32 rounded-lg shadow-lg border',
-            'bg-background border-neutral-200 dark:border-[rgba(148,163,184,0.24)]',
-            'dark:bg-neutral-800 z-50'
+            'ds-glass-dropdown absolute right-0 mt-2 w-36 z-50'
           )}
         >
           <div className="py-1">
@@ -168,12 +165,12 @@ export function ThemeToggleDropdown() {
                   setIsOpen(false);
                 }}
                 className={cn(
-                  'flex items-center w-full px-3 py-2 text-sm',
-                  'hover:bg-neutral-50 dark:hover:bg-neutral-700',
+                  'ds-text-caption flex items-center w-full px-3 py-2',
+                  'hover:bg-ds-hover',
                   'transition-colors duration-200',
                   theme === themeOption.value
-                    ? 'text-accent bg-accent/10'
-                    : 'text-neutral-700 dark:text-neutral-300'
+                    ? 'text-ds-brand bg-accent/10'
+                    : 'text-ds-secondary'
                 )}
               >
                 <span className="mr-2">{themeOption.icon}</span>

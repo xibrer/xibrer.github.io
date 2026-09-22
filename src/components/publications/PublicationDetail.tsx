@@ -34,20 +34,20 @@ export default function PublicationDetail({ publication, locale }: PublicationDe
     <>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(scholarlyArticle).replace(/</g, '\\u003c') }} />
     <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-      <Link href={`${prefix}/publications`} className="inline-flex mb-8 text-sm font-medium text-accent hover:text-accent-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 rounded">
+      <Link href={`${prefix}/publications`} className="ds-text-caption inline-flex mb-8 font-medium text-ds-brand transition-colors hover:text-ds-brand-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 rounded">
         ← {labels.back}
       </Link>
 
       <header className="mb-8">
-        <p className="text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-3">
+        <p className="ds-text-caption font-medium text-ds-description mb-3">
           <PublicationVenue publication={publication} />
         </p>
-        <h1 className="text-3xl sm:text-4xl font-serif font-bold text-primary leading-tight text-balance">
+        <h1 className="ds-text-heading1 text-ds-primary text-balance">
           <FormattedBibTeXText nodes={publication.titleNodes} fallback={publication.title} />
         </h1>
-        <p className="mt-5 text-base text-neutral-600 dark:text-neutral-400 leading-relaxed">
+        <p className="ds-text-body mt-5 text-ds-description">
           {publication.authors.map((author, index) => (
-            <span key={author.name} className={author.isHighlighted ? 'font-semibold text-accent' : undefined}>
+            <span key={author.name} className={author.isHighlighted ? 'font-medium text-ds-brand' : undefined}>
               {author.name}{index < publication.authors.length - 1 ? ', ' : ''}
             </span>
           ))}
@@ -55,35 +55,42 @@ export default function PublicationDetail({ publication, locale }: PublicationDe
       </header>
 
       {publication.preview && (
-        <div className="relative aspect-video mb-8 overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50">
+        <div className="relative aspect-video mb-8 overflow-hidden rounded-ds-media border border-ds-border-default bg-ds-surface-3">
           <Image src={`/papers/${publication.preview}`} alt="" fill className="object-cover" sizes="(max-width: 896px) 100vw, 896px" priority />
         </div>
       )}
 
       <div className="flex flex-wrap gap-3 mb-10">
         {publication.pdfUrl && (
-          <a href={publication.pdfUrl} className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-accent text-white hover:bg-accent-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50" target="_blank" rel="noopener noreferrer">
-            <DocumentArrowDownIcon className="h-4 w-4" />{labels.pdf}
+          <a href={publication.pdfUrl} className="ds-btn-primary ds-btn-m" target="_blank" rel="noopener noreferrer">
+            <DocumentArrowDownIcon />{labels.pdf}
           </a>
         )}
         {publication.code && (
-          <a href={publication.code} className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-neutral-200 dark:border-neutral-700 hover:border-accent hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50" target="_blank" rel="noopener noreferrer">
-            <CodeBracketIcon className="h-4 w-4" />{labels.code}
+          <a href={publication.code} className="ds-btn-secondary ds-btn-m" target="_blank" rel="noopener noreferrer">
+            <CodeBracketIcon />{labels.code}
           </a>
         )}
       </div>
 
       {publication.abstract && (
         <section className="mb-10">
-          <h2 className="text-2xl font-serif font-bold text-primary mb-4">{labels.abstract}</h2>
-          <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed text-pretty">{publication.abstract}</p>
+          <h2 className="ds-text-heading2 text-ds-primary mb-4">{labels.abstract}</h2>
+          <p className="ds-text-body text-ds-description leading-[1.75] text-pretty">{publication.abstract}</p>
         </section>
       )}
 
       {publication.bibtex && (
         <section>
-          <h2 className="text-2xl font-serif font-bold text-primary mb-4">{labels.citation}</h2>
-          <pre className="p-5 rounded-xl bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 overflow-x-auto whitespace-pre-wrap text-sm font-mono text-neutral-700 dark:text-neutral-300">{publication.bibtex}</pre>
+          <h2 className="ds-text-heading2 text-ds-primary mb-4">{labels.citation}</h2>
+          <div className="bg-ds-code rounded-ds-media border border-ds-border-default overflow-hidden">
+            <div className="flex items-center gap-[7px] px-4 py-3 border-b border-ds-border-default">
+              <span className="w-[11px] h-[11px] rounded-full bg-[#ff5f57]" />
+              <span className="w-[11px] h-[11px] rounded-full bg-[#febc2e]" />
+              <span className="w-[11px] h-[11px] rounded-full bg-[#28c840]" />
+            </div>
+            <pre className="p-5 text-xs text-ds-secondary overflow-x-auto whitespace-pre-wrap font-mono leading-relaxed">{publication.bibtex}</pre>
+          </div>
         </section>
       )}
     </article>

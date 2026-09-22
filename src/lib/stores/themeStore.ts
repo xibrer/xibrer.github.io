@@ -12,8 +12,8 @@ interface ThemeStore {
 export const useThemeStore = create<ThemeStore>()(
   persist(
     (set, get) => ({
-      // Default to light mode
-      theme: 'light',
+      // Dark-first, matching the reference design language.
+      theme: 'dark',
       setTheme: (theme: Theme) => {
         set({ theme });
         updateTheme(theme);
