@@ -75,7 +75,7 @@ function CardContent({ item, embedded, viewProjectLabel }: CardContentProps) {
                         href={item.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 rounded-md bg-accent px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-accent-dark focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 dark:focus:ring-offset-neutral-900"
+                        className="inline-flex items-center gap-1.5 rounded-md bg-accent px-3 py-1.5 text-sm font-medium text-white dark:text-neutral-900 transition-colors hover:bg-accent-dark focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 dark:focus:ring-offset-neutral-900"
                     >
                         {viewProjectLabel}
                         <ArrowTopRightOnSquareIcon className="h-4 w-4" aria-hidden="true" />
@@ -132,7 +132,7 @@ function ProjectShowcase({ config, embedded, viewProjectLabel }: ProjectShowcase
     };
 
     return (
-        <div className="overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm dark:border-neutral-800 dark:bg-neutral-900">
+        <div className="glass-inset overflow-hidden rounded-2xl">
             <div className="border-b border-neutral-200 bg-neutral-50/80 p-2 dark:border-neutral-800 dark:bg-neutral-800/30">
                 <div className="overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                     <div
@@ -217,6 +217,7 @@ export default function CardPage({ config, embedded = false }: { config: CardPag
 
     return (
         <motion.div
+            className={embedded ? 'glass-panel home-content-panel' : undefined}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -246,7 +247,7 @@ export default function CardPage({ config, embedded = false }: { config: CardPag
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.4, delay: 0.1 * index }}
-                            className={`bg-white dark:bg-neutral-900 ${embedded ? "p-4" : "p-6"} rounded-xl shadow-sm border border-neutral-200 dark:border-neutral-800 hover:shadow-lg transition-all duration-200 hover:scale-[1.01]`}
+                            className={`glass-inset glass-interactive ${embedded ? "p-4" : "p-6"} rounded-xl transition-all duration-200`}
                         >
                             <CardContent
                                 item={item}

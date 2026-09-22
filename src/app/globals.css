@@ -37,9 +37,14 @@
   --info: #3b82f6;
   
   /* Glass effect */
-  --glass-bg: rgba(255, 255, 255, 0.1);
-  --glass-border: rgba(255, 255, 255, 0.2);
-  --glass-shadow: rgba(0, 0, 0, 0.1);
+  --glass-bg: rgba(255, 255, 255, 0.54);
+  --glass-border: rgba(255, 255, 255, 0.8);
+  --glass-shadow: rgba(37, 67, 106, 0.08);
+  --glass-edge: rgba(255, 255, 255, 0.95);
+  --glass-inset-bg: rgba(255, 255, 255, 0.32);
+  --glass-inset-border: rgba(110, 143, 177, 0.2);
+  --glass-nav-bg: rgba(239, 246, 253, 0.76);
+  --glass-fallback: #eef4fb;
 }
 
 @theme inline {
@@ -148,9 +153,14 @@ html[data-locale^="zh"] {
   --accent-dark: #d4a562;
   
   /* Dark mode glass effect */
-  --glass-bg: rgba(15, 23, 42, 0.8);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-shadow: rgba(0, 0, 0, 0.5);
+  --glass-bg: rgba(22, 36, 54, 0.48);
+  --glass-border: rgba(186, 212, 246, 0.17);
+  --glass-shadow: rgba(0, 6, 18, 0.24);
+  --glass-edge: rgba(222, 238, 255, 0.22);
+  --glass-inset-bg: rgba(156, 194, 232, 0.055);
+  --glass-inset-border: rgba(186, 212, 246, 0.13);
+  --glass-nav-bg: rgba(13, 25, 42, 0.8);
+  --glass-fallback: #17273b;
   
   /* Neutral colors for dark mode - properly inverted */
   --neutral-50: #0f172a;
@@ -258,4 +268,162 @@ body {
   background-color: #1e293b;
   /* Soften card borders in dark mode only */
   border-color: rgba(148, 163, 184, 0.24);
+}
+
+/* The homepage has a light field behind the glass, not an opaque page canvas. */
+body:has(.home-shell) {
+  isolation: isolate;
+  --accent: #35669a;
+  --accent-light: #4c7db3;
+  --accent-dark: #244f7f;
+  background-color: #e8eff7;
+  background-image:
+    radial-gradient(ellipse at 8% 0%, rgba(255, 255, 255, 0.96), transparent 44%),
+    radial-gradient(ellipse at 88% 12%, rgba(117, 170, 228, 0.38), transparent 48%),
+    radial-gradient(ellipse at 15% 75%, rgba(152, 186, 214, 0.34), transparent 48%),
+    linear-gradient(140deg, #e1ecf8, #f3f6f8 55%, #dfeaf5);
+  background-attachment: fixed;
+}
+
+.dark body:has(.home-shell) {
+  --accent: #a0c5f3;
+  --accent-light: #c5ddfa;
+  --accent-dark: #c5ddfa;
+  background-color: #090f18;
+  background-image:
+    radial-gradient(ellipse at 78% -8%, rgba(64, 120, 183, 0.64), transparent 48%),
+    radial-gradient(ellipse at 3% 38%, rgba(34, 79, 128, 0.44), transparent 48%),
+    radial-gradient(ellipse at 90% 85%, rgba(37, 72, 109, 0.3), transparent 44%),
+    linear-gradient(145deg, #142941, #0b131f 55%, #080e17);
+}
+
+body:has(.home-shell)::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(106, 146, 185, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(106, 146, 185, 0.055) 1px, transparent 1px);
+  background-size: 88px 88px;
+  mask-image: linear-gradient(#000, transparent 85%);
+}
+
+.glass-panel {
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent 42%, rgba(255, 255, 255, 0.025)),
+    var(--glass-bg);
+  box-shadow:
+    inset 0 1px 0 var(--glass-edge),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.025),
+    0 16px 48px -16px var(--glass-shadow);
+  -webkit-backdrop-filter: blur(24px) saturate(135%);
+  backdrop-filter: blur(24px) saturate(135%);
+}
+
+.home-content-panel,
+.profile-glass {
+  padding: clamp(20px, 2.5vw, 28px);
+}
+
+.profile-glass {
+  /* Keep profile popovers above the neighboring frosted panels. */
+  z-index: 1;
+}
+
+.profile-portrait {
+  border: 1px solid var(--glass-edge);
+  box-shadow: 0 12px 32px -12px var(--glass-shadow);
+}
+
+.glass-inset {
+  background: var(--glass-inset-bg);
+  border: 1px solid var(--glass-inset-border);
+  box-shadow: inset 0 1px 0 var(--glass-edge);
+}
+
+.glass-control {
+  border: 1px solid var(--glass-inset-border);
+  background: var(--glass-inset-bg);
+  box-shadow: inset 0 1px 0 var(--glass-edge);
+}
+
+.glass-control:hover {
+  background: var(--glass-bg);
+}
+
+.profile-glass :is(button, a)[aria-label] {
+  color: var(--neutral-600);
+}
+
+.profile-glass :is(button, a)[aria-label]:is(:hover, [aria-expanded='true']) {
+  color: var(--accent);
+}
+
+@media (hover: hover) {
+  .glass-interactive:hover {
+    border-color: var(--accent);
+    background: var(--glass-bg);
+    box-shadow: inset 0 1px 0 var(--glass-edge), 0 8px 24px -12px var(--glass-shadow);
+  }
+}
+
+.glass-navigation {
+  margin: 12px auto 0;
+  width: calc(100% - 32px);
+  max-width: 1200px;
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  background: var(--glass-nav-bg);
+  box-shadow: inset 0 1px 0 var(--glass-edge), 0 8px 32px -16px var(--glass-shadow);
+  -webkit-backdrop-filter: blur(28px) saturate(150%);
+  backdrop-filter: blur(28px) saturate(150%);
+}
+
+.glass-navigation-scrolled {
+  box-shadow: inset 0 1px 0 var(--glass-edge), 0 12px 36px -12px var(--glass-shadow);
+}
+
+.glass-mobile-navigation {
+  margin: 8px 16px 0;
+  padding: 8px;
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  background: var(--glass-nav-bg);
+  -webkit-backdrop-filter: blur(28px);
+  backdrop-filter: blur(28px);
+  box-shadow: 0 16px 40px var(--glass-shadow);
+}
+
+@media (max-width: 639px) {
+  .glass-navigation {
+    margin-top: 8px;
+    width: calc(100% - 24px);
+    border-radius: 16px;
+  }
+
+  .glass-panel {
+    border-radius: 20px;
+  }
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass-panel,
+  .glass-navigation,
+  .glass-mobile-navigation {
+    background: var(--glass-fallback);
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .glass-panel,
+  .glass-navigation,
+  .glass-mobile-navigation {
+    background: var(--glass-fallback);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
 }
