@@ -204,7 +204,7 @@ export default function Profile({ author, social, features, researchInterests }:
                                                 <div className="flex items-center justify-center space-x-2 mb-1">
                                                     <p className="font-semibold">{messages.profile.workAddress}</p>
                                                     {!isAddressPinned && (
-                                                        <div className="flex items-center space-x-0.5 text-xs text-ds-placeholder">
+                                                        <div className="flex items-center space-x-0.5 text-xs text-ds-description">
                                                             <Pin className="h-2.5 w-2.5" />
                                                             <span className="hidden sm:inline">{messages.profile.click}</span>
                                                         </div>
@@ -287,7 +287,7 @@ export default function Profile({ author, social, features, researchInterests }:
                                                 <div className="flex items-center justify-center space-x-2 mb-1">
                                                     <p className="font-semibold">{messages.profile.email}</p>
                                                     {!isEmailPinned && (
-                                                        <div className="flex items-center space-x-0.5 text-xs text-ds-placeholder">
+                                                        <div className="flex items-center space-x-0.5 text-xs text-ds-description">
                                                             <Pin className="h-2.5 w-2.5" />
                                                             <span className="hidden sm:inline">{messages.profile.click}</span>
                                                         </div>

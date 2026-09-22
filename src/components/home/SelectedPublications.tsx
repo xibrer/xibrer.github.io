@@ -28,8 +28,11 @@ export default function SelectedPublications({ publications, title, enableOnePag
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
         >
-            <div className="flex items-center justify-between mb-4">
-                <h2 className="ds-text-heading2 text-ds-primary">{resolvedTitle}</h2>
+            <div className="flex flex-wrap items-end justify-between gap-ds-4 mb-4">
+                <div className="flex flex-col items-start gap-ds-3">
+                    <span className="ds-eyebrow">{messages.sections.peerReviewed}</span>
+                    <h2 className="ds-text-heading2 text-ds-primary">{resolvedTitle}</h2>
+                </div>
                 <Link
                     href={enableOnePageMode ? `${localePrefix}/#publications` : `${localePrefix}/publications`}
                     prefetch={true}
@@ -69,7 +72,7 @@ export default function SelectedPublications({ publications, title, enableOnePag
                             <PublicationVenue publication={pub} />
                         </p>
                         {pub.description && (
-                            <p className="ds-text-caption text-ds-placeholder line-clamp-2">
+                            <p className="ds-text-caption text-ds-description line-clamp-2">
                                 {pub.description}
                             </p>
                         )}

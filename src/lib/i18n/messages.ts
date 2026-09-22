@@ -1,12 +1,21 @@
 export interface LocaleMessages {
   common: {
     all: string;
+    copy: string;
+    copied: string;
     copyToClipboard: string;
     viewProject: string;
     backToPublications: string;
   };
   navigation: {
     openMainMenu: string;
+  };
+  /** Short mono "eyebrow" labels that qualify a section without repeating its title. */
+  sections: {
+    profile: string;
+    peerReviewed: string;
+    openSource: string;
+    updates: string;
   };
   theme: {
     system: string;
@@ -48,18 +57,28 @@ export interface LocaleMessages {
   footer: {
     lastUpdated: string;
     builtWithPrism: string;
+    contact: string;
+    quickLinks: string;
   };
 }
 
 const en: LocaleMessages = {
   common: {
     all: 'All',
+    copy: 'Copy',
+    copied: 'Copied',
     copyToClipboard: 'Copy to clipboard',
     viewProject: 'View Project',
     backToPublications: 'Back to Publications',
   },
   navigation: {
     openMainMenu: 'Open main menu',
+  },
+  sections: {
+    profile: 'Profile',
+    peerReviewed: 'Peer-reviewed',
+    openSource: 'Open source',
+    updates: 'Updates',
   },
   theme: {
     system: 'System',
@@ -101,18 +120,28 @@ const en: LocaleMessages = {
   footer: {
     lastUpdated: 'Last updated',
     builtWithPrism: 'Built with PRISM',
+    contact: 'Contact',
+    quickLinks: 'Quick links',
   },
 };
 
 const zh: LocaleMessages = {
   common: {
     all: '全部',
+    copy: '复制',
+    copied: '已复制',
     copyToClipboard: '复制到剪贴板',
     viewProject: '查看项目',
     backToPublications: '返回论文列表',
   },
   navigation: {
     openMainMenu: '打开主菜单',
+  },
+  sections: {
+    profile: '个人简介',
+    peerReviewed: '同行评审',
+    openSource: '开源',
+    updates: '动态',
   },
   theme: {
     system: '跟随系统',
@@ -154,6 +183,8 @@ const zh: LocaleMessages = {
   footer: {
     lastUpdated: '最近更新',
     builtWithPrism: '由 PRISM 构建',
+    contact: '联系方式',
+    quickLinks: '快速导航',
   },
 };
 

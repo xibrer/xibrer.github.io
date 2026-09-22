@@ -20,7 +20,10 @@ export default function About({ content, title }: AboutProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
         >
-            <h2 className="ds-text-heading2 text-ds-primary mb-4">{resolvedTitle}</h2>
+            <div className="flex flex-col items-start gap-ds-3 mb-4">
+                <span className="ds-eyebrow">{messages.sections.profile}</span>
+                <h2 className="ds-text-heading2 text-ds-primary">{resolvedTitle}</h2>
+            </div>
             <div className="ds-text-body text-ds-description leading-[1.75]">
                 <ReactMarkdown
                     components={{

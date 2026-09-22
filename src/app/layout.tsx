@@ -177,7 +177,7 @@ export default function RootLayout({
               try {
                 const theme = localStorage.getItem('theme-storage');
                 const parsed = theme ? JSON.parse(theme) : null;
-                const setting = parsed?.state?.theme || 'dark';
+                const setting = parsed?.state?.theme || 'system';
                 const prefersDark = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
                 const effective = setting === 'dark' ? 'dark' : (setting === 'light' ? 'light' : (prefersDark ? 'dark' : 'light'));
                 var root = document.documentElement;
@@ -185,8 +185,10 @@ export default function RootLayout({
                 root.setAttribute('data-theme', effective);
               } catch (e) {
                 var root = document.documentElement;
-                root.classList.add('dark');
-                root.setAttribute('data-theme', 'dark');
+                var pd = false;
+                try { pd = window.matchMedia('(prefers-color-scheme: dark)').matches; } catch (_) {}
+                root.classList.add(pd ? 'dark' : 'light');
+                root.setAttribute('data-theme', pd ? 'dark' : 'light');
               }
             `,
           }}
@@ -219,6 +221,11 @@ export default function RootLayout({
               lastUpdated={config.site.last_updated}
               lastUpdatedByLocale={lastUpdatedByLocale}
               defaultLocale={runtimeI18n.defaultLocale}
+              social={config.social}
+              authorName={config.author.name}
+              itemsByLocale={navigationByLocale}
+              enableOnePageMode={config.features.enable_one_page_mode}
+              i18n={runtimeI18n}
             />
           </LocaleProvider>
         </ThemeProvider>

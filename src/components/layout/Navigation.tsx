@@ -181,7 +181,7 @@ export default function Navigation({
                 : ''
             )}
           >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="px-5 sm:px-6">
               <div className="flex justify-between items-center h-16 lg:h-20">
                 <motion.div
                   whileHover={{ scale: 1.05 }}
@@ -190,7 +190,9 @@ export default function Navigation({
                 >
                   <Link
                     href={localizeHref('/')}
-                    className="block truncate text-base sm:text-lg font-medium tracking-[-0.01em] text-ds-primary transition-colors duration-200 hover:text-ds-brand"
+                    /* No colour change on hover: brand blue on the scrolled glass pill
+                       only reaches 2.65:1, and the logo is already an obvious link. */
+                    className="block truncate text-base sm:text-lg font-medium tracking-[-0.01em] text-ds-primary"
                   >
                     {effectiveSiteTitle}
                   </Link>
@@ -238,12 +240,12 @@ export default function Navigation({
                             onClick={() => enableOnePageMode && setActiveHash(`#${item.target}`)}
                             onMouseEnter={() => setHoveredHref(href)}
                             className={cn(
-                              'ds-text-caption relative px-3.5 py-2 font-medium rounded-ds-pill transition-colors duration-150',
-                              isActive
-                                ? 'text-ds-primary'
-                                : hoveredHref === href
-                                  ? 'text-ds-primary'
-                                  : 'text-ds-description'
+                              'ds-text-caption relative px-3.5 py-2 rounded-ds-pill transition-colors duration-150',
+                              // Full-strength ink, like the reference header: a dimmed
+                              // `.62` link only reached 3.48:1 on the scrolled glass pill.
+                              // Hierarchy moves to weight, which costs no contrast.
+                              'text-ds-primary',
+                              isActive ? 'font-medium' : 'font-normal'
                             )}
                           >
                             {item.title}

@@ -145,17 +145,26 @@
 :root,
 :root.dark,
 [data-theme='dark'] {
-  /* Text */
+  /* Text
+     The reference ships `description` at .5 and `placeholder` at .3. Those hold
+     up for its short marketing copy on flat black, but not for long-form
+     reading over a gradient — and `placeholder` was being used for real content
+     (news dates, tags, footer meta), where .3 lands near 2.6:1. Lifted here. */
   --ds-color-text-primary: #ffffff;
-  --ds-color-text-secondary: hsla(0, 0%, 100%, 0.8);
-  --ds-color-text-description: hsla(0, 0%, 100%, 0.5);
-  --ds-color-text-placeholder: hsla(0, 0%, 100%, 0.3);
+  --ds-color-text-secondary: hsla(0, 0%, 100%, 0.82);
+  --ds-color-text-description: hsla(0, 0%, 100%, 0.62);
+  --ds-color-text-placeholder: hsla(0, 0%, 100%, 0.45);
   --ds-color-text-inverse: #0a0a0a;
 
-  /* Brand */
-  --ds-color-brand: #6799fe;
+  /* Brand
+     Links are the one ink that must clear 4.5:1 on its own. The reference's
+     `#4d6bfe` / `#6799fe` reach only 3.62–4.00 here, so both are nudged along
+     the same hue until they pass (see docs/harness-ui-parity.md).
+     `brand-soft` is the hover ink and must move AWAY from the background:
+     lighter in dark, darker in light. */
+  --ds-color-brand: #79abff;
   --ds-color-brand-strong: #4d6bfe;
-  --ds-color-brand-soft: #8ab0ff;
+  --ds-color-brand-soft: #9bbaff;
 
   /* Surfaces */
   --ds-color-bg-page: #0a0a0a;
@@ -197,21 +206,39 @@
   /* Misc */
   --ds-color-scrollbar: hsla(0, 0%, 100%, 0.2);
   --ds-shadow-card: hsla(0, 0%, 100%, 0.12) 0px 1px 0px 0px inset;
-  --ds-grid-color: rgba(60, 100, 160, 0.1);
   --ds-glass-fallback: #141414;
+
+  /* Ambient page field. The reference page never shows you its flat #0a0a0a —
+     a full-viewport canvas paints deep blue and warm gold over it. These are
+     that canvas's own colours (`#1A3870`, `#204a7e`, `#eed8aa`, `#538dca`,
+     `#fff7d1`) as static gradients, plus its 0.38 vignette. */
+  --ds-ambient-base: #0a0a0a;
+  --ds-ambient-navy: rgba(32, 74, 126, 0.5);
+  --ds-ambient-navy-deep: rgba(26, 56, 112, 0.42);
+  --ds-ambient-halo: rgba(83, 141, 202, 0.2);
+  --ds-ambient-core: rgba(255, 247, 209, 0.12);
+  --ds-ambient-warm: rgba(238, 216, 170, 0.1);
+  --ds-ambient-vignette: rgba(0, 0, 0, 0.4);
+  /* Dot field ink — the reference's dot opacity is .2 on dark. */
+  --ds-grid-color: rgba(60, 100, 160, 0.2);
+  --ds-grid-dot-size: 1.4px;
 }
 
 :root.light,
 [data-theme='light'] {
   --ds-color-text-primary: #1e232c;
-  --ds-color-text-secondary: rgba(0, 0, 0, 0.7);
-  --ds-color-text-description: rgba(0, 0, 0, 0.65);
-  --ds-color-text-placeholder: #8691a1;
+  --ds-color-text-secondary: rgba(0, 0, 0, 0.72);
+  --ds-color-text-description: rgba(0, 0, 0, 0.7);
+  /* Restored to a true placeholder ink — real content now uses `description`. */
+  --ds-color-text-placeholder: #6f7889;
   --ds-color-text-inverse: #ffffff;
 
-  --ds-color-brand: #4d6bfe;
+  /* `#3a65c2` is the reference's own `--ds-color-brand-deep`, so the darker
+     link blue stays inside its palette. Hover darkens rather than lightens —
+     the old `#6b85ff` hover dropped to 2.73:1 on a light page. */
+  --ds-color-brand: #3a65c2;
   --ds-color-brand-strong: #3a65c2;
-  --ds-color-brand-soft: #6b85ff;
+  --ds-color-brand-soft: #2f4f9e;
 
   --ds-color-bg-page: #f9f8f8;
   --ds-color-bg-surface-1: hsla(0, 0%, 100%, 0.3);
@@ -248,8 +275,21 @@
 
   --ds-color-scrollbar: rgba(0, 0, 0, 0.15);
   --ds-shadow-card: 0 0 0 1px #f1f5f9, 0 2px 4px rgba(0, 0, 0, 0.05), 0 12px 24px rgba(0, 0, 0, 0.05);
-  --ds-grid-color: rgba(60, 100, 160, 0.12);
   --ds-glass-fallback: #f3f4f6;
+
+  /* Same ambient composition, tuned so a light reading surface stays clean:
+     the blue halo is faint and the warm note carries most of the tint. */
+  --ds-ambient-base: #f9f8f8;
+  --ds-ambient-navy: rgba(32, 74, 126, 0.13);
+  --ds-ambient-navy-deep: rgba(26, 56, 112, 0.08);
+  --ds-ambient-halo: rgba(83, 141, 202, 0.16);
+  --ds-ambient-core: rgba(255, 247, 209, 0.26);
+  --ds-ambient-warm: rgba(238, 216, 170, 0.16);
+  --ds-ambient-vignette: rgba(15, 23, 42, 0.05);
+  /* The same blue ink reads far stronger on a light page, so it is both
+     lighter and finer here — a texture, not graph paper. */
+  --ds-grid-color: rgba(60, 100, 160, 0.16);
+  --ds-grid-dot-size: 1.2px;
 }
 
 /* Theme-independent tokens. */
@@ -444,7 +484,7 @@ html {
 }
 
 body {
-  background: var(--ds-color-bg-page);
+  background-color: var(--ds-ambient-base);
   color: var(--ds-color-text-primary);
   font-family: var(--font-ds-sans);
   line-height: 1.6;
@@ -453,18 +493,58 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* The homepage keeps a faint grid behind the content — the same 90px rhythm and
-   rgba(60,100,160) ink the reference page uses for its dot field. */
-body:has(.home-shell)::before {
+/* Ambient field: the reference page's hero palette as a static, drifting
+   gradient composition. Transform-only animation so it stays on the
+   compositor; the global `prefers-reduced-motion` rule already stills it. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-image:
+    radial-gradient(ellipse 88% 78% at 50% 46%, transparent 46%, var(--ds-ambient-vignette) 100%),
+    radial-gradient(circle at 88% 46%, var(--ds-ambient-core) 0%, transparent 42%),
+    radial-gradient(ellipse 46% 52% at 90% 46%, var(--ds-ambient-halo) 0%, transparent 70%),
+    radial-gradient(ellipse 105% 85% at 30% 12%, var(--ds-ambient-navy) 0%, transparent 66%),
+    radial-gradient(ellipse 80% 62% at 6% 96%, var(--ds-ambient-warm) 0%, transparent 64%),
+    radial-gradient(ellipse 120% 80% at 60% 112%, var(--ds-ambient-navy-deep) 0%, transparent 64%);
+  animation: ds-ambient-drift 52s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Scale never drops below 1.08 and the drift never exceeds 1.8%, so the layer
+   can never reveal an edge — no negative inset, no scrollbar risk. */
+@keyframes ds-ambient-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1.08);
+  }
+  33% {
+    transform: translate3d(-1.8%, 1.4%, 0) scale(1.12);
+  }
+  66% {
+    transform: translate3d(1.6%, -1.2%, 0) scale(1.1);
+  }
+}
+
+/* 90px dot field in the reference page's `rgba(60,100,160)` ink — on every page.
+   The reference draws *dots* (1.8px, opacity .2); a crossing line grid reads as
+   graph paper, which is especially cheap-looking on a light page. */
+body::after {
   content: '';
   position: fixed;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background-image:
-    linear-gradient(var(--ds-grid-color) 1px, transparent 1px),
-    linear-gradient(90deg, var(--ds-grid-color) 1px, transparent 1px);
+  background-image: radial-gradient(
+    circle,
+    var(--ds-grid-color) var(--ds-grid-dot-size),
+    transparent var(--ds-grid-dot-size)
+  );
   background-size: 90px 90px;
+  background-position: -45px -45px; /* land the dots on the 90px lattice */
   mask-image: linear-gradient(#000, transparent 88%);
   -webkit-mask-image: linear-gradient(#000, transparent 88%);
 }
@@ -501,6 +581,19 @@ body:has(.home-shell)::before {
 @media (min-width: 1560px) {
   .ds-container {
     width: min(100% - 160px, 1280px);
+  }
+}
+
+/* Single-column reading measure for prose pages (e.g. a paper detail), taken
+   from the reference page's centered `max-w-[820px]` block. */
+.ds-container-prose {
+  width: min(100% - 48px, 820px);
+  margin-inline: auto;
+}
+
+@media (min-width: 768px) {
+  .ds-container-prose {
+    width: min(100% - 96px, 820px);
   }
 }
 
@@ -779,7 +872,9 @@ body:has(.home-shell)::before {
   border-radius: var(--ds-radius-pill);
   font-size: 12px;
   font-weight: 500;
-  color: var(--ds-color-text-description);
+  /* `description` only reached 3.48:1 on the scrolled glass pill; `secondary`
+     clears AA at 4.76:1 while keeping the active/inactive hierarchy. */
+  color: var(--ds-color-text-secondary);
   transition: color 0.2s, background-color 0.2s, box-shadow 0.2s;
 }
 
@@ -790,7 +885,7 @@ body:has(.home-shell)::before {
 }
 
 .ds-locale-toggle-item:not(.is-active):hover {
-  color: var(--ds-color-text-secondary);
+  color: var(--ds-color-text-primary);
 }
 
 @keyframes ds-hero-enter {

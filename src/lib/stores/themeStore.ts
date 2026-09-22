@@ -12,8 +12,8 @@ interface ThemeStore {
 export const useThemeStore = create<ThemeStore>()(
   persist(
     (set, get) => ({
-      // Dark-first, matching the reference design language.
-      theme: 'dark',
+      // Follow the OS preference by default; an explicit choice is persisted.
+      theme: 'system',
       setTheme: (theme: Theme) => {
         set({ theme });
         updateTheme(theme);

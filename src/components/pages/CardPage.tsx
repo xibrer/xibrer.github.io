@@ -45,7 +45,7 @@ function CardContent({ item, embedded, viewProjectLabel }: CardContentProps) {
             <div className="flex justify-between items-start gap-4 mb-2">
                 <h3 className={embedded ? "ds-text-title text-ds-primary" : "ds-text-subtitle text-ds-primary"}>{item.title}</h3>
                 {item.date && (
-                    <span className="ds-text-xs shrink-0 text-ds-placeholder font-mono bg-ds-code border border-ds-border-subtle px-2 py-1 rounded-ds-sm">
+                    <span className="ds-text-xs shrink-0 text-ds-description font-mono bg-ds-code border border-ds-border-subtle px-2 py-1 rounded-ds-sm">
                         {item.date}
                     </span>
                 )}
@@ -223,14 +223,17 @@ export default function CardPage({ config, embedded = false }: { config: CardPag
             transition={{ duration: 0.6, delay: 0.4 }}
         >
             <div className={embedded ? "mb-4" : "mb-8"}>
-                <h1 className={embedded ? "ds-text-heading2 text-ds-primary mb-4" : "ds-text-heading1 text-ds-primary mb-4"}>{config.title}</h1>
-                {config.description && (
-                    <div className={`${embedded ? "ds-text-body" : "ds-text-subtitle"} text-ds-description max-w-2xl leading-[1.75]`}>
-                        <ReactMarkdown components={markdownComponents}>
-                            {config.description}
-                        </ReactMarkdown>
-                    </div>
-                )}
+                <div className="flex flex-col items-start gap-ds-3">
+                    <span className="ds-eyebrow">{messages.sections.openSource}</span>
+                    <h1 className={embedded ? "ds-text-heading2 text-ds-primary" : "ds-text-heading1 text-ds-primary"}>{config.title}</h1>
+                    {config.description && (
+                        <div className={`${embedded ? "ds-text-body" : "ds-text-subtitle"} text-ds-description max-w-2xl leading-[1.75]`}>
+                            <ReactMarkdown components={markdownComponents}>
+                                {config.description}
+                            </ReactMarkdown>
+                        </div>
+                    )}
+                </div>
             </div>
 
             {config.layout === 'showcase' ? (

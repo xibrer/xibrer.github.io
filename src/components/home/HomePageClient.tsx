@@ -58,8 +58,8 @@ export default function HomePageClient({ dataByLocale, defaultLocale, initialLoc
   }
 
   return (
-    <div className="home-shell max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 min-h-screen">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+    <div className="home-shell ds-container pt-ds-5 pb-ds-11 min-h-screen">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-ds-6 lg:gap-ds-8">
         <div className="lg:col-span-1 min-w-0">
           <Profile
             author={data.author}
@@ -69,9 +69,9 @@ export default function HomePageClient({ dataByLocale, defaultLocale, initialLoc
           />
         </div>
 
-        <div className="lg:col-span-2 min-w-0 space-y-6">
+        <div className="lg:col-span-2 min-w-0 space-y-ds-9">
           {data.pagesToShow.map((page) => (
-            <section key={page.id} id={page.id} className="home-section scroll-mt-28 space-y-6">
+            <section key={page.id} id={page.id} className="home-section scroll-mt-32 space-y-ds-6">
               {page.type === 'about' && page.sections.map((section: SectionConfig) => {
                 switch (section.type) {
                   case 'markdown':

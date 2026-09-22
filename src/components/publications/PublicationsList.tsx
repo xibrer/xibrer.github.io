@@ -19,6 +19,7 @@ import { cn } from '@/lib/utils';
 import { useMessages } from '@/lib/i18n/useMessages';
 import FormattedBibTeXText from './FormattedBibTeXText';
 import PublicationVenue from './PublicationVenue';
+import CopyButton from './CopyButton';
 
 interface PublicationsListProps {
     config: PublicationPageConfig;
@@ -70,8 +71,9 @@ export default function PublicationsList({ config, publications, embedded = fals
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
         >
-            <div className="mb-8">
-                <h1 className={embedded ? "ds-text-heading2 text-ds-primary mb-4" : "ds-text-heading1 text-ds-primary mb-4"}>{config.title}</h1>
+            <div className="mb-8 flex flex-col items-start gap-ds-3">
+                <span className="ds-eyebrow">{messages.sections.peerReviewed}</span>
+                <h1 className={embedded ? "ds-text-heading2 text-ds-primary" : "ds-text-heading1 text-ds-primary"}>{config.title}</h1>
                 {config.description && (
                     <p className={`${embedded ? "ds-text-body" : "ds-text-subtitle"} text-ds-description max-w-2xl`}>
                         {config.description}
@@ -181,7 +183,7 @@ export default function PublicationsList({ config, publications, embedded = fals
             {/* Publications Grid */}
             <div className="space-y-6">
                 {filteredPublications.length === 0 ? (
-                    <div className="ds-text-body text-center py-12 text-ds-placeholder">
+                    <div className="ds-text-body text-center py-12 text-ds-description">
                         {messages.publications.noResults}
                     </div>
                 ) : (
@@ -326,15 +328,7 @@ export default function PublicationsList({ config, publications, embedded = fals
                                                             <span className="w-[11px] h-[11px] rounded-full bg-[#febc2e]" />
                                                             <span className="w-[11px] h-[11px] rounded-full bg-[#28c840]" />
                                                         </div>
-                                                        <button
-                                                            onClick={() => {
-                                                                navigator.clipboard.writeText(pub.bibtex || '');
-                                                            }}
-                                                            className="ds-btn-text"
-                                                            title={messages.common.copyToClipboard}
-                                                        >
-                                                            {messages.common.copyToClipboard}
-                                                        </button>
+                                                        <CopyButton value={pub.bibtex} />
                                                     </div>
                                                     <pre className="p-4 text-xs text-ds-secondary overflow-x-auto whitespace-pre-wrap font-mono leading-relaxed">
                                                         {pub.bibtex}

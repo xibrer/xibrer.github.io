@@ -4,6 +4,7 @@ import { DocumentArrowDownIcon, CodeBracketIcon } from '@heroicons/react/24/outl
 import type { Publication } from '@/types/publication';
 import PublicationVenue from './PublicationVenue';
 import FormattedBibTeXText from './FormattedBibTeXText';
+import CopyButton from './CopyButton';
 import { getConfig } from '@/lib/config';
 
 interface PublicationDetailProps {
@@ -33,7 +34,7 @@ export default function PublicationDetail({ publication, locale }: PublicationDe
   return (
     <>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(scholarlyArticle).replace(/</g, '\\u003c') }} />
-    <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <article className="ds-container-prose pt-ds-7 pb-ds-11">
       <Link href={`${prefix}/publications`} className="ds-text-caption inline-flex mb-8 font-medium text-ds-brand transition-colors hover:text-ds-brand-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 rounded">
         ← {labels.back}
       </Link>
@@ -84,10 +85,13 @@ export default function PublicationDetail({ publication, locale }: PublicationDe
         <section>
           <h2 className="ds-text-heading2 text-ds-primary mb-4">{labels.citation}</h2>
           <div className="bg-ds-code rounded-ds-media border border-ds-border-default overflow-hidden">
-            <div className="flex items-center gap-[7px] px-4 py-3 border-b border-ds-border-default">
-              <span className="w-[11px] h-[11px] rounded-full bg-[#ff5f57]" />
-              <span className="w-[11px] h-[11px] rounded-full bg-[#febc2e]" />
-              <span className="w-[11px] h-[11px] rounded-full bg-[#28c840]" />
+            <div className="flex items-center justify-between px-4 py-3 border-b border-ds-border-default">
+              <div className="flex items-center gap-[7px]">
+                <span className="w-[11px] h-[11px] rounded-full bg-[#ff5f57]" />
+                <span className="w-[11px] h-[11px] rounded-full bg-[#febc2e]" />
+                <span className="w-[11px] h-[11px] rounded-full bg-[#28c840]" />
+              </div>
+              <CopyButton value={publication.bibtex} />
             </div>
             <pre className="p-5 text-xs text-ds-secondary overflow-x-auto whitespace-pre-wrap font-mono leading-relaxed">{publication.bibtex}</pre>
           </div>
