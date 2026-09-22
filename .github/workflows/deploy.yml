@@ -37,6 +37,11 @@ jobs:
 
       - name: Build site
         run: npm run build
+        env:
+          # Set the ANALYTICS_ENDPOINT repository Variable to the deployed
+          # workers/analytics URL (…workers.dev/hit) to switch analytics on.
+          # Unset means the build ships no analytics code at all.
+          NEXT_PUBLIC_ANALYTICS_ENDPOINT: ${{ vars.ANALYTICS_ENDPOINT }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5

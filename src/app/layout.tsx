@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import Navigation from '@/components/layout/Navigation';
+import Analytics from '@/components/analytics/Analytics';
 import Footer from '@/components/layout/Footer';
 import { ThemeProvider } from '@/components/ui/ThemeProvider';
 import { LocaleProvider } from '@/components/ui/LocaleProvider';
@@ -176,6 +177,7 @@ export default function RootLayout({
         <link rel="preload" href="/fonts/dm-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/montserrat-latin-500-normal.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/fragment-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <Analytics />
         <script
           dangerouslySetInnerHTML={{
             __html: `

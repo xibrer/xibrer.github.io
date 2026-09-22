@@ -242,6 +242,7 @@ export default function PublicationsList({ config, publications, embedded = fals
                                         {pub.doi && (
                                             <a
                                                 href={`https://doi.org/${pub.doi}`}
+                                                data-track={`doi:${pub.id}`}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="ds-btn-secondary ds-btn-xs"
@@ -252,6 +253,7 @@ export default function PublicationsList({ config, publications, embedded = fals
                                         {pub.code && (
                                             <a
                                                 href={pub.code}
+                                                data-track={`code:${pub.id}`}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="ds-btn-secondary ds-btn-xs"
@@ -263,6 +265,7 @@ export default function PublicationsList({ config, publications, embedded = fals
                                         {pub.pdfUrl && (
                                             <a
                                                 href={pub.pdfUrl}
+                                                data-track={`pdf:${pub.id}`}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="ds-btn-secondary ds-btn-xs"

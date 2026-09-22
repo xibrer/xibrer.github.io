@@ -65,6 +65,16 @@ npm run build
 
 See [docs/deployment.md](docs/deployment.md) for details.
 
+## 📊 Visitor Analytics (optional, self-hosted)
+
+Off by default. A Cloudflare Worker + Analytics Engine records pageviews and
+outbound PDF/DOI/Code clicks with no cookies and no third-party service; there is
+no public read endpoint.
+
+*   Worker source and deploy steps: [workers/analytics/README.md](workers/analytics/README.md)
+*   Enabled by setting the `ANALYTICS_ENDPOINT` repository **Variable** — until
+    then the build ships zero analytics code.
+
 ## 📂 Project Structure
 
 ```

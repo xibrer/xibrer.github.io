@@ -63,12 +63,12 @@ export default function PublicationDetail({ publication, locale }: PublicationDe
 
       <div className="flex flex-wrap gap-3 mb-10">
         {publication.pdfUrl && (
-          <a href={publication.pdfUrl} className="ds-btn-primary ds-btn-m" target="_blank" rel="noopener noreferrer">
+          <a href={publication.pdfUrl} data-track={`pdf:${publication.id}`} className="ds-btn-primary ds-btn-m" target="_blank" rel="noopener noreferrer">
             <DocumentArrowDownIcon />{labels.pdf}
           </a>
         )}
         {publication.code && (
-          <a href={publication.code} className="ds-btn-secondary ds-btn-m" target="_blank" rel="noopener noreferrer">
+          <a href={publication.code} data-track={`code:${publication.id}`} className="ds-btn-secondary ds-btn-m" target="_blank" rel="noopener noreferrer">
             <CodeBracketIcon />{labels.code}
           </a>
         )}

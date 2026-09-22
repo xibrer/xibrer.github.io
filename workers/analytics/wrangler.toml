@@ -1,0 +1,13 @@
+name = "xibrer-analytics"
+main = "src/index.js"
+compatibility_date = "2026-09-22"
+
+# Workers Analytics Engine — 100,000 data points/day on the Workers Free plan.
+# This is deliberately NOT Workers KV: KV's free tier allows only 1,000 writes to
+# distinct keys per day, which would silently drop data well below real traffic.
+[[analytics_engine_datasets]]
+binding = "ANALYTICS"
+dataset = "pageviews"
+
+[observability]
+enabled = true

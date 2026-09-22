@@ -79,6 +79,7 @@ export default function SelectedPublications({ publications, title, enableOnePag
                         {pub.pdfUrl && (
                             <a
                                 href={pub.pdfUrl}
+                                data-track={`pdf:${pub.id}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="ds-btn-secondary ds-btn-xs w-fit mt-3"
