@@ -72,6 +72,7 @@ outbound PDF/DOI/Code clicks with no cookies and no third-party service; there i
 no public read endpoint.
 
 *   Worker source and deploy steps: [workers/analytics/README.md](workers/analytics/README.md)
+*   Daily query cheat sheet: [docs/visitor-stats.md](docs/visitor-stats.md)
 *   Enabled by setting the `ANALYTICS_ENDPOINT` repository **Variable** — until
     then the build ships zero analytics code.
 
@@ -80,12 +81,17 @@ no public read endpoint.
 ```
 ├── content/              # User-editable content (TOML, BibTeX, MD)
 ├── content_zh/           # Chinese translations
-├── public/               # Static assets (images, PDFs)
+├── docs/                 # Deployment, analytics, and design docs
+├── public/               # Static assets (images, PDFs, fonts, favicon)
 ├── src/
 │   ├── app/              # Next.js App Router
 │   ├── components/       # React components
 │   ├── lib/              # Utility functions
 │   └── types/            # TypeScript definitions
+├── workers/
+│   └── analytics/        # Self-hosted visitor analytics (Cloudflare, deployed separately)
+├── scripts/              # Build-time scripts (content validation)
+├── tests/                # Tests
 ├── next.config.ts        # Next.js configuration
 └── .github/workflows/    # CI/CD (GitHub Pages deploy)
 ```

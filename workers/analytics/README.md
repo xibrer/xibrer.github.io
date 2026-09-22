@@ -59,84 +59,14 @@ https://xibrer-analytics.<你的子域>.workers.dev
 
 ## 怎么看数据
 
-Cloudflare Dashboard → **Workers & Pages → Analytics Engine → `pageviews` → SQL**。下面的 `_sample_interval` 是 Analytics Engine 的标准聚合权重。
+**日常查询请看这份速查表：[docs/visitor-stats.md](../../docs/visitor-stats.md)** —— 按问题分好类的成套语句（趋势、最热页面、论文出站点击、来源、国家、设备、分区热度、中英文比例），加时间函数用法和自我排除的技巧。
 
-总 PV（近 7 天）：
+入口：Cloudflare Dashboard → **Workers & Pages → Analytics Engine → `pageviews` → SQL**。
 
-```sql
-SELECT SUM(_sample_interval) AS views
-FROM pageviews
-WHERE blob1 = 'pageview' AND timestamp > NOW() - INTERVAL '7' DAY
-```
+两个必知的坑：
 
-最受欢迎的页面：
-
-```sql
-SELECT blob2 AS path, SUM(_sample_interval) AS views
-FROM pageviews
-WHERE blob1 = 'pageview'
-GROUP BY path
-ORDER BY views DESC
-LIMIT 25
-```
-
-**出站点击**（哪几篇论文真的有人想读——这是这个统计里最有价值的一项）：
-
-```sql
-SELECT blob3 AS event, SUM(_sample_interval) AS clicks
-FROM pageviews
-WHERE blob1 = 'event'
-GROUP BY event
-ORDER BY clicks DESC
-LIMIT 25
-```
-
-来源：
-
-```sql
-SELECT blob4 AS referrer, SUM(_sample_interval) AS views
-FROM pageviews
-WHERE blob1 = 'pageview' AND blob4 != ''
-GROUP BY referrer
-ORDER BY views DESC
-LIMIT 25
-```
-
-中英文各占多少：
-
-```sql
-SELECT
-  CASE WHEN blob2 LIKE '/zh/%' THEN 'zh'
-       WHEN blob2 LIKE '/en/%' THEN 'en'
-       ELSE 'other' END AS locale,
-  SUM(_sample_interval) AS views
-FROM pageviews
-WHERE blob1 = 'pageview'
-GROUP BY locale
-ORDER BY views DESC
-```
-
-按天趋势：
-
-```sql
-SELECT toStartOfDay(timestamp) AS day, SUM(_sample_interval) AS views
-FROM pageviews
-WHERE blob1 = 'pageview' AND timestamp > NOW() - INTERVAL '30' DAY
-GROUP BY day
-ORDER BY day
-```
-
-国家和设备：
-
-```sql
-SELECT blob5 AS country, COUNT(*) AS hits
-FROM pageviews
-GROUP BY country
-ORDER BY hits DESC
-LIMIT 20;
-```
-
-想看真实访客（排除爬虫）就在 `WHERE` 里加 `AND blob6 != 'bot'`。
+*   **计数要用 `sum(_sample_interval)`，不要用 `count()`**。Analytics Engine 有采样，`count()` 返回的是"读了多少行"，不是事件数。
+*   **写入有约 1 分钟延迟**；数据集刚建好时只有部署验证留下的 `/__deploy-check__` 测试行。
 
 ## 免费额度与限制
 
